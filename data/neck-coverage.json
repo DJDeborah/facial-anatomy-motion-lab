@@ -1,0 +1,910 @@
+{
+  "schemaVersion": 1,
+  "checkedDate": "2026-10-17",
+  "summaryZh": "当前有28组颈部/舌骨相关双侧命名结构，共56个真实网格；其中颈阔肌和胸锁乳突肌2组可做示意收缩，其余26组为解剖参考。仍缺前方深颈肌等运行时结构及关节—舌骨—筋膜耦合，不能称为完整颈部力学模型。",
+  "counts": {
+    "totalRuntimeMeshes": 188,
+    "runtimeMuscleAndAponeurosisMeshes": 112,
+    "totalBookAndContextControls": 29,
+    "neckNamedGroups": 28,
+    "neckMeshes": 56,
+    "animatedNeckGroups": 2,
+    "animatedNeckMeshes": 4,
+    "referenceNeckGroups": 26,
+    "referenceNeckMeshes": 52,
+    "bookExpressionNeckGroups": 1,
+    "missingRuntimeCandidates": 8,
+    "missingCandidateArchiveMeshes": 16
+  },
+  "countDefinitionZh": "这里的组按应用命名合并左右侧，二腹肌前/后腹分别计组；不是人体全部颈肌的生物学总数。范围含颈阔肌、姿态肌、肩颈肌、枕下肌及舌骨上/下肌，不含喉内肌、咽肌、舌内外肌、筋膜和肌腱。",
+  "bookScopeZh": "独立颈肌动作页已确证PDF116–117颈阔肌，PDF165恐惧明确收缩。胸锁乳突肌为外部解剖补充；未确认书中舌骨上下肌及深颈肌独立动作章或9表情主动配方。",
+  "coactivationPolicyZh": "允许任意多个肌肉共同激活，包括拮抗组合；显示各项强度，不根据表情标签禁止组合。当前结果为示意混合，不能等同生理可独立募集或真实力学解。",
+  "muscles": [
+    {
+      "id": "platysma",
+      "nameZh": "颈阔肌",
+      "nameEn": "Platysma",
+      "category": "表情相关浅层",
+      "meshCount": 2,
+      "controlStatus": "animated",
+      "bookPages": [
+        116,
+        117
+      ],
+      "expressionIds": [
+        "fear"
+      ],
+      "noteZh": "绷紧前外侧颈皮肤，牵动下唇/口角；本书 fear 有主动收缩证据。",
+      "requiredCoupling": [
+        "skin",
+        "lower-lip"
+      ],
+      "sourceMeshNames": [
+        "Left platysma",
+        "Right platysma"
+      ],
+      "roleEvidence": "book-supported",
+      "availableInRuntime": true,
+      "simulationLevel": "heuristic-local-shortening"
+    },
+    {
+      "id": "sternocleidomastoid",
+      "nameZh": "胸锁乳突肌",
+      "nameEn": "Sternocleidomastoid",
+      "category": "头颈姿态",
+      "meshCount": 2,
+      "controlStatus": "animated",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "单侧同侧侧屈、对侧转头；双侧作用依颈椎姿态而变。现控件仅局部缩短。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "head"
+      ],
+      "sourceMeshNames": [
+        "Left sternocleidomastoid",
+        "Right sternocleidomastoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "heuristic-local-shortening"
+    },
+    {
+      "id": "descending_trapezius",
+      "nameZh": "斜方肌降部",
+      "nameEn": "Descending part of trapezius",
+      "category": "肩颈姿态",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "肩胛带与颈部耦合；需肩胛/锁骨约束，不能当独立表情肌。",
+      "requiredCoupling": [
+        "scapula",
+        "clavicle",
+        "cervical-joints"
+      ],
+      "sourceMeshNames": [
+        "Descending part of left trapezius",
+        "Descending part of right trapezius"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "levator_scapulae",
+      "nameZh": "肩胛提肌",
+      "nameEn": "Levator scapulae",
+      "category": "肩颈姿态",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "肩胛提举及颈部稳定/侧屈，作用取决于哪端固定。",
+      "requiredCoupling": [
+        "scapula",
+        "cervical-joints"
+      ],
+      "sourceMeshNames": [
+        "Left levator scapulae",
+        "Right levator scapulae"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "anterior_belly_digastric",
+      "nameZh": "二腹肌前腹",
+      "nameEn": "Anterior belly of digastric",
+      "category": "舌骨上肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "舌骨稳定时可辅助降下颌；下颌稳定时可提舌骨。需二腹肌中间腱。",
+      "requiredCoupling": [
+        "mandible",
+        "hyoid",
+        "digastric-tendon"
+      ],
+      "sourceMeshNames": [
+        "Left anterior belly of digastric",
+        "Right anterior belly of digastric"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "posterior_belly_digastric",
+      "nameZh": "二腹肌后腹",
+      "nameEn": "Posterior belly of digastric",
+      "category": "舌骨上肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "经中间腱传力，参与舌骨位置控制；不可直接绑定为口角下拉。",
+      "requiredCoupling": [
+        "hyoid",
+        "digastric-tendon"
+      ],
+      "sourceMeshNames": [
+        "Left posterior belly of digastric",
+        "Right posterior belly of digastric"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "mylohyoid",
+      "nameZh": "下颌舌骨肌",
+      "nameEn": "Mylohyoid",
+      "category": "舌骨上肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "参与抬高口底与舌骨；下颌/舌骨约束改变其可见运动。",
+      "requiredCoupling": [
+        "mandible",
+        "hyoid",
+        "oral-floor"
+      ],
+      "sourceMeshNames": [
+        "Left mylohyoid",
+        "Right mylohyoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "geniohyoid",
+      "nameZh": "颏舌骨肌",
+      "nameEn": "Geniohyoid",
+      "category": "舌骨上肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "牵舌骨向前上；舌骨稳定时辅助降下颌。",
+      "requiredCoupling": [
+        "mandible",
+        "hyoid"
+      ],
+      "sourceMeshNames": [
+        "Left geniohyoid",
+        "Right geniohyoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "stylohyoid",
+      "nameZh": "茎突舌骨肌",
+      "nameEn": "Stylohyoid",
+      "category": "舌骨上肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "提舌骨并向后牵引，属于舌骨/吞咽动作背景。",
+      "requiredCoupling": [
+        "hyoid"
+      ],
+      "sourceMeshNames": [
+        "Left stylohyoid",
+        "Right stylohyoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "omohyoid",
+      "nameZh": "肩胛舌骨肌",
+      "nameEn": "Omohyoid",
+      "category": "舌骨下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "舌骨下降/稳定；源网格按整肌命名，未作为上下腹两个独立控件。",
+      "requiredCoupling": [
+        "hyoid",
+        "scapula"
+      ],
+      "sourceMeshNames": [
+        "Left omohyoid",
+        "Right omohyoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "sternohyoid",
+      "nameZh": "胸骨舌骨肌",
+      "nameEn": "Sternohyoid",
+      "category": "舌骨下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "舌骨下降/稳定，与舌骨上肌共同决定舌骨位置。",
+      "requiredCoupling": [
+        "hyoid",
+        "sternum"
+      ],
+      "sourceMeshNames": [
+        "Left sternohyoid",
+        "Right sternohyoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "sternothyroid",
+      "nameZh": "胸骨甲状肌",
+      "nameEn": "Sternothyroid",
+      "category": "舌骨下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "作用于甲状软骨/喉位，不能仅用舌骨平移代替。",
+      "requiredCoupling": [
+        "thyroid-cartilage",
+        "sternum"
+      ],
+      "sourceMeshNames": [
+        "Left sternothyroid",
+        "Right sternothyroid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "thyrohyoid",
+      "nameZh": "甲状舌骨肌",
+      "nameEn": "Thyrohyoid",
+      "category": "舌骨下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "缩短甲状软骨与舌骨间距离；哪端运动取决于约束。",
+      "requiredCoupling": [
+        "thyroid-cartilage",
+        "hyoid"
+      ],
+      "sourceMeshNames": [
+        "Left thyrohyoid",
+        "Right thyrohyoid"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "scalenus_anterior",
+      "nameZh": "前斜角肌",
+      "nameEn": "Scalenus anterior",
+      "category": "侧方深颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈部稳定/侧屈与肋骨运动相耦合，非书中情绪配方。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "ribs"
+      ],
+      "sourceMeshNames": [
+        "Left scalenus anterior",
+        "Right scalenus anterior"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "scalenus_medius",
+      "nameZh": "中斜角肌",
+      "nameEn": "Scalenus medius",
+      "category": "侧方深颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈部稳定/侧屈与肋骨运动相耦合，非书中情绪配方。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "ribs"
+      ],
+      "sourceMeshNames": [
+        "Left scalenus medius",
+        "Right scalenus medius"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "scalenus_posterior",
+      "nameZh": "后斜角肌",
+      "nameEn": "Scalenus posterior",
+      "category": "侧方深颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈部稳定/侧屈与肋骨运动相耦合，非书中情绪配方。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "ribs"
+      ],
+      "sourceMeshNames": [
+        "Left scalenus posterior",
+        "Right scalenus posterior"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "splenius_capitis",
+      "nameZh": "头夹肌",
+      "nameEn": "Splenius capitis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "候选姿态作用为后伸、同侧旋转/侧屈，需颈椎关节联动。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "head"
+      ],
+      "sourceMeshNames": [
+        "Left splenius capitis",
+        "Right splenius capitis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "splenius_cervicis",
+      "nameZh": "颈夹肌",
+      "nameEn": "Splenius cervicis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈段后伸与同侧姿态控制，需颈椎分节模型。",
+      "requiredCoupling": [
+        "cervical-joints"
+      ],
+      "sourceMeshNames": [
+        "Left splenius cervicis",
+        "Right splenius cervicis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "semispinalis_capitis",
+      "nameZh": "头半棘肌",
+      "nameEn": "Semispinalis capitis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "头颈后伸和旋转控制，不能由肌肉外形缩放推算头转角。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "head"
+      ],
+      "sourceMeshNames": [
+        "Left semispinalis capitis",
+        "Right semispinalis capitis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "semispinalis_cervicis",
+      "nameZh": "颈半棘肌",
+      "nameEn": "Semispinalis cervicis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈椎后伸/旋转与稳定，需分节约束。",
+      "requiredCoupling": [
+        "cervical-joints"
+      ],
+      "sourceMeshNames": [
+        "Left semispinalis cervicis",
+        "Right semispinalis cervicis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "iliocostalis_cervicis",
+      "nameZh": "颈髂肋肌",
+      "nameEn": "Iliocostalis cervicis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈椎后伸/侧屈背景肌，原始来源也用 colli 命名。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "ribs"
+      ],
+      "sourceMeshNames": [
+        "Left iliocostalis cervicis",
+        "Right iliocostalis cervicis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "longissimus_capitis",
+      "nameZh": "头最长肌",
+      "nameEn": "Longissimus capitis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "头颈后伸和同侧姿态控制。",
+      "requiredCoupling": [
+        "cervical-joints",
+        "head"
+      ],
+      "sourceMeshNames": [
+        "Left longissimus capitis",
+        "Right longissimus capitis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "longissimus_cervicis",
+      "nameZh": "颈最长肌",
+      "nameEn": "Longissimus cervicis",
+      "category": "后方头颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "颈椎后伸/侧屈背景肌。",
+      "requiredCoupling": [
+        "cervical-joints"
+      ],
+      "sourceMeshNames": [
+        "Left longissimus cervicis",
+        "Right longissimus cervicis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "multifidus_cervicis",
+      "nameZh": "颈多裂肌",
+      "nameEn": "Multifidus cervicis",
+      "category": "后方深颈肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "分节稳定和姿态控制，当前一个整组表面不等于分节肌束。",
+      "requiredCoupling": [
+        "cervical-joints"
+      ],
+      "sourceMeshNames": [
+        "Left multifidus cervicis",
+        "Right multifidus cervicis"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "obliquus_capitis_inferior",
+      "nameZh": "头下斜肌",
+      "nameEn": "Obliquus capitis inferior",
+      "category": "枕下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "枢椎—寰椎同侧旋转背景；需C1/C2独立关节。",
+      "requiredCoupling": [
+        "C1-C2"
+      ],
+      "sourceMeshNames": [
+        "Left obliquus capitis inferior",
+        "Right obliquus capitis inferior"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "obliquus_capitis_superior",
+      "nameZh": "头上斜肌",
+      "nameEn": "Obliquus capitis superior",
+      "category": "枕下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "上颈段后伸/同侧侧屈背景。",
+      "requiredCoupling": [
+        "occiput-C1"
+      ],
+      "sourceMeshNames": [
+        "Left obliquus capitis superior",
+        "Right obliquus capitis superior"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "rectus_capitis_posterior_major",
+      "nameZh": "头后大直肌",
+      "nameEn": "Rectus capitis posterior major",
+      "category": "枕下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "枕颈后伸及同侧旋转背景。",
+      "requiredCoupling": [
+        "occiput-C2"
+      ],
+      "sourceMeshNames": [
+        "Left rectus capitis posterior major",
+        "Right rectus capitis posterior major"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "rectus_capitis_posterior_minor",
+      "nameZh": "头后小直肌",
+      "nameEn": "Rectus capitis posterior minor",
+      "category": "枕下肌群",
+      "meshCount": 2,
+      "controlStatus": "reference",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "枕颈后伸与上颈段稳定背景。",
+      "requiredCoupling": [
+        "occiput-C1"
+      ],
+      "sourceMeshNames": [
+        "Left rectus capitis posterior minor",
+        "Right rectus capitis posterior minor"
+      ],
+      "roleEvidence": "external-anatomy-context",
+      "availableInRuntime": true,
+      "simulationLevel": "static-reference"
+    },
+    {
+      "id": "longus_capitis",
+      "nameZh": "头长肌",
+      "nameEn": "Longus capitis",
+      "category": "前方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "前方屈曲/稳定控制应补充，避免只有后方伸肌。",
+      "sourceRawNames": [
+        "Longus capitis muscle.l",
+        "Longus capitis muscle.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "longus_colli",
+      "nameZh": "颈长肌",
+      "nameEn": "Longus colli",
+      "category": "前方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "需按纵/斜部及颈椎附着分区，不能只补整块缩放。",
+      "sourceRawNames": [
+        "Longus colli muscle.l",
+        "Longus colli muscle.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "rectus_capitis_anterior",
+      "nameZh": "头前直肌",
+      "nameEn": "Rectus capitis anterior",
+      "category": "前方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "枕寰关节前方稳定/屈曲背景。",
+      "sourceRawNames": [
+        "Rectus anterior capitis muscle.l",
+        "Rectus anterior capitis muscle.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "rectus_capitis_lateralis",
+      "nameZh": "头外侧直肌",
+      "nameEn": "Rectus capitis lateralis",
+      "category": "侧方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "枕寰关节侧向稳定背景。",
+      "sourceRawNames": [
+        "Rectus lateralis capitis muscle.l",
+        "Rectus lateralis capitis muscle.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "spinalis_capitis",
+      "nameZh": "头棘肌",
+      "nameEn": "Spinalis capitis",
+      "category": "后方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "原始档案有命名表面；需核对与半棘肌的解剖变异/划分。",
+      "sourceRawNames": [
+        "Spinalis capitis muscle.l",
+        "Spinalis capitis muscle.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "spinalis_cervicis",
+      "nameZh": "颈棘肌",
+      "nameEn": "Spinalis cervicis",
+      "category": "后方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "原始档案有表面，尚未载入。",
+      "sourceRawNames": [
+        "Spinalis colli muscle.l",
+        "Spinalis colli muscle.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "interspinales_cervicis",
+      "nameZh": "颈棘间肌群",
+      "nameEn": "Interspinales cervicis",
+      "category": "后方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "多个椎间肌束；整组表面不能代表逐节独立控制。",
+      "sourceRawNames": [
+        "Interspinales colli muscles.l",
+        "Interspinales colli muscles.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    },
+    {
+      "id": "rotatores",
+      "nameZh": "回旋肌群（颈段待分割）",
+      "nameEn": "Rotatores",
+      "category": "后方深颈肌群",
+      "meshCount": 0,
+      "sourceArchiveMeshCount": 2,
+      "controlStatus": "missing",
+      "bookPages": [],
+      "expressionIds": [],
+      "noteZh": "原始命名未区分颈/胸段，需裁分和附着核对后才适合本应用。",
+      "sourceRawNames": [
+        "Rotatores.l",
+        "Rotatores.r"
+      ],
+      "availableInRuntime": false,
+      "availableInLocalArchive": true,
+      "simulationLevel": "not-loaded"
+    }
+  ],
+  "additionalMissingStructures": [
+    {
+      "label": "二腹肌中间腱",
+      "sourceRawNames": [
+        "Intermediate tendon of digastric muscle.l",
+        "Intermediate tendon of digastric muscle.r"
+      ],
+      "noteZh": "原始源已有；当前只载入前/后腹与舌骨，尚未建立腱滑动/附着约束。"
+    },
+    {
+      "label": "颈筋膜及与颈阔肌/皮肤的附着",
+      "sourceRawNames": [
+        "Superficial investing cervical fascia.l",
+        "Superficial investing cervical fascia.r"
+      ],
+      "noteZh": "原始源有部分筋膜表面，但没有可用的连续组织层、材料参数和附着力学。"
+    },
+    {
+      "label": "颈椎/下颌/舌骨关节和接触",
+      "sourceRawNames": [],
+      "noteZh": "可见骨骼不等于已建立骨骼自由度、关节约束、咬合/软组织接触和肌肉力矩。"
+    },
+    {
+      "label": "喉、咽、舌的完整功能肌群",
+      "sourceRawNames": [],
+      "noteZh": "完整头颈功能范围更广；原始源含部分相关结构，本次未将其纳入完整性分母或表情控件。"
+    }
+  ],
+  "recommendedNextControls": [
+    {
+      "priority": 1,
+      "ids": [
+        "anterior_belly_digastric",
+        "geniohyoid",
+        "mylohyoid"
+      ],
+      "labelZh": "张口—舌骨联动",
+      "requires": [
+        "下颌姿态",
+        "舌骨移动",
+        "中间腱和附着约束"
+      ],
+      "reasonZh": "现有真实网格可复用；先补联合骨运动再校准肌肉，不把张口完全归给外翼肌。",
+      "readyForValidatedSimulation": false
+    },
+    {
+      "priority": 2,
+      "ids": [
+        "sternocleidomastoid",
+        "splenius_capitis",
+        "semispinalis_capitis"
+      ],
+      "labelZh": "头颈姿态与共同稳定",
+      "requires": [
+        "颈椎/枕寰枢关节",
+        "各肌起止及力臂"
+      ],
+      "reasonZh": "可观察屈伸/旋转与共收缩，但不能从独立网格缩放推导头部姿态。",
+      "readyForValidatedSimulation": false
+    },
+    {
+      "priority": 3,
+      "ids": [
+        "longus_capitis",
+        "longus_colli",
+        "rectus_capitis_anterior"
+      ],
+      "labelZh": "补足前方深颈肌",
+      "requires": [
+        "载入原始源网格",
+        "分部与附着核对",
+        "颈椎联动"
+      ],
+      "reasonZh": "前方深肌在运行时缺失，不宜以现有SCM代表全部屈肌。",
+      "readyForValidatedSimulation": false
+    }
+  ],
+  "limitations": [
+    "animated仅表示当前应用有示意收缩控件，不表示已求解肌肉力、关节力矩或人体实验验证。",
+    "reference结构可分层观察，但尚未独立募集/驱动。源文件中的superficial/deep显示层不是完整的解剖分层标准。",
+    "missing列表是已核实可补入的8组候选，不是人体剩余缺失肌肉的穷尽清单；回旋肌还需识别颈段。",
+    "书中的肌肉分布和表情清单不能直接给出肌力大小、可独立控制程度、组织刚度或神经协同关系。",
+    "任意共同激活可作为探索输入，但所有组合是否可随意自主完成、及其具体形变，均需实验或经校准的模型验证。",
+    "当前表面网格与启发式动画不包含连续皮肤/脂肪/筋膜的非线性、接触、滑移、区域激活和个体差异。"
+  ],
+  "sources": [
+    {
+      "title": "书籍与页码引用",
+      "url": "methods.html#book"
+    },
+    {
+      "title": "模型来源与许可",
+      "url": "methods.html#sources"
+    },
+    {
+      "title": "OpenStax: Axial Muscles of the Head, Neck, and Back",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back"
+    },
+    {
+      "title": "Platysma functional anatomy and segmental innervation (55 cadaver heads)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10702465/"
+    },
+    {
+      "title": "Z-Anatomy: Models of human anatomy (source archive)",
+      "url": "https://github.com/Z-Anatomy/Models-of-human-anatomy"
+    },
+    {
+      "title": "Ecorche: named runtime source geometries",
+      "url": "https://github.com/Charleeh/ecorche"
+    },
+    {
+      "title": "Organization of the central control of muscles of facial expression in man",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2342913/"
+    },
+    {
+      "title": "Quantal biomechanical effects in speech postures of the lips",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7509306/"
+    }
+  ]
+}

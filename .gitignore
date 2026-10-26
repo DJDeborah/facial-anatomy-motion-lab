@@ -1,0 +1,11 @@
+node_modules/
+.venv/
+.openai/
+research/
+reference/
+tests/
+_tmp/
+.env
+.env.*
+*.log
+.server.pid

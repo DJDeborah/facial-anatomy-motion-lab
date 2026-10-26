@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#153d38"><title>动物面部动作 · Facial Anatomy Lab</title>
+  <link rel="stylesheet" href="animals.css"><link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span class="brand-mark">f.</span><span>FACIAL ANATOMY <b>LAB</b><small>面部表情解剖实验室</small></span></a><nav aria-label="工作区"><a href="./">人类解剖</a><a href="animals.html" aria-current="page">动物动作比较</a><a href="#evidence">研究与依据 ↗</a></nav><span class="local-tag"><i></i> 在线实验室</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">COMPARATIVE ANATOMY / MOTION LAB</p><h1>从一次开合，到一组面部动作<span>。</span></h1><p class="intro-copy">选择一种动物，拆开运动机制，再把动作组合起来。沿用人类实验室的观察方式，探索更少控制通道的模型。</p></div><div class="intro-aside"><span>学习路径</span><b>结构 → 动作 → 组合</b><small>按演示控制量组织，不代表进化等级</small></div></section>
+    <section class="species-path" id="species-path" aria-label="选择动物"><p>正在载入动物动作资料…</p></section>
+    <div class="path-note"><span>阅读方式</span><p id="framing">通道数量是本模型的设计选择，不是动物的肌肉总数、真实自由度或情感复杂度。</p></div>
+    <section class="lab" aria-label="动物面部动作实验室">
+      <aside class="panel controls-panel">
+        <div class="panel-heading"><h2>动作通道</h2><span id="channel-count">—</span></div>
+        <p class="panel-caption">选择通道查看结构；拖动滑块组合动作。</p>
+        <div id="channel-list"></div>
+        <div class="layer-controls"><div class="panel-heading"><h2>分层观察</h2><span>LAYERS</span></div><label><input id="layer-skin" type="checkbox" checked><span>外部形态<small>与骨架共享姿态参数</small></span><i class="swatch skin"></i></label><label><input id="layer-muscles" type="checkbox" checked><span>驱动结构示意<small>位置与走向未经标定</small></span><i class="swatch muscle"></i></label><label><input id="layer-bones" type="checkbox" checked><span>骨架 / 软骨示意<small>简化支撑与关节</small></span><i class="swatch bone"></i></label></div>
+        <p class="small-note">开启深层结构时，外部形态自动半透明。只勾选“外部形态”，可观察闭眼、遮挡与整体轮廓。</p>
+        <p class="small-note">0–100% 表示动画幅度，不是肌肉激活率、力或实测生理范围。当前通道双侧同步。</p>
+      </aside>
+      <section class="stage">
+        <div class="stage-heading"><div><p class="eyebrow" id="species-latin">COMPARATIVE MODEL</p><h2 id="species-title">载入中</h2></div><span class="model-badge">程序生成 · 机制示意</span></div>
+        <div id="animal-viewer" role="img" aria-label="可旋转的动物头部三维动作模型"></div>
+        <div class="canvas-note" id="canvas-status" role="status">拖动旋转 · 滚轮缩放 · 点击结构查看通道</div>
+        <div class="view-tools" aria-label="模型视角"><button data-view="front">正面</button><button class="active" data-view="threequarter">斜侧</button><button data-view="side">侧面</button></div>
+        <div class="stage-legend"><span><i class="swatch muscle"></i> 驱动结构</span><span><i class="swatch active"></i> 当前动作</span><span><i class="swatch bone"></i> 支撑结构</span></div>
+        <div class="playback"><div class="playback-head"><div><small>当前组合</small><strong id="preset-title">中性姿态</strong></div><button class="primary" id="play-motion">▶ 播放组合</button><button id="reset-motion">↺ 复位</button></div><div class="timeline"><label for="master-intensity">组合幅度</label><input type="range" id="master-intensity" min="0" max="1" step="0.01" value="0"><output id="master-value">0%</output></div><div class="playback-options"><label><input id="loop-motion" type="checkbox" checked> 循环</label><label>速度 <select id="motion-speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select></label><button class="text-button" id="export-animal">导出动作参数 ↓</button></div></div>
+      </section>
+      <aside class="panel detail-panel"><div class="panel-heading"><h2>结构与运动</h2><span>MECHANISM</span></div><span class="type-tag" id="channel-kind">—</span><h3 id="channel-title">—</h3><p class="english" id="channel-en">—</p><div class="code-badge" id="channel-code"></div><dl><dt>驱动 / 关联结构</dt><dd id="channel-structure">—</dd><dt>怎样运动</dt><dd id="channel-mechanism">—</dd><dt>模型范围</dt><dd id="channel-limit">—</dd></dl><div class="detail-sources"><span>动作依据</span><div id="channel-sources"></div></div><div class="interpretation"><b>先描述动作，再研究含义。</b><p>同一动作可能出现在不同情境。这里不把张口、眯眼或耳位自动翻译成“开心”“愤怒”等情绪。</p></div></aside>
+    </section>
+    <section class="presets-section"><div class="section-heading"><div><p class="eyebrow">COMBINE & OBSERVE</p><h2>从单动作到协同组合</h2></div><p>点击载入峰值姿态，再播放或拖动组合幅度。</p></div><div class="preset-grid" id="preset-list"></div><p class="small-note" id="preset-note">组合和时间曲线为教学编排，未拟合真实运动录像。</p></section>
+    <section class="species-explanation"><div><p class="eyebrow">WHAT THIS MODEL TEACHES</p><h2 id="about-title">—</h2><p id="species-summary">—</p></div><div><h3>机制重点</h3><p id="species-mechanism">—</p><h3>尚未包含</h3><p id="species-limit">—</p></div></section>
+    <section id="comparison" class="comparison-section"><div class="section-heading"><div><p class="eyebrow">A MODELING PATH, NOT AN EVOLUTIONARY LADDER</p><h2>从简到繁，究竟增加了什么？</h2></div></div><div class="table-scroll"><table><thead><tr><th>代表对象</th><th>本页控制通道</th><th>新增的观察重点</th><th>观察入口</th></tr></thead><tbody id="comparison-body"></tbody></table></div><p class="small-note">猫和狗的耳廓、触须等控制与人类不同，不能用人脸 AU 数量直接比较整体解剖复杂度。人类应用的 29 个肌群控件也不等于 29 个独立生理自由度。</p></section>
+    <section id="evidence" class="evidence-section"><div class="section-heading"><div><p class="eyebrow">EVIDENCE & CORRECTIONS</p><h2>先把几个常见说法校正</h2></div><span class="research-date">文献核查 · 2026.10.19</span></div><div id="correction-list" class="correction-grid"></div><details class="sources-details"><summary>展开原始研究与 AnimalFACS 来源 <span id="source-count"></span></summary><div id="source-list" class="source-list"></div></details></section>
+    <footer><span>FACIAL ANATOMY LAB <b>/</b> 动作可编辑，证据可追溯。</span><a href="methods.html#sources" target="_blank" rel="noopener">来源与许可 ↗</a><a href="./">返回人类肌肉实验室 ↗</a></footer>
+  </main>
+  <div id="animal-toast" role="status" aria-live="polite"></div>
+  <script src="vendor/three.min.js"></script><script src="animal-viewer.js"></script><script src="animals.js"></script>
+</body>
+</html>

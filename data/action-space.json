@@ -1,0 +1,1333 @@
+{
+  "overview": {
+    "schemaVersion": 1,
+    "title": "单肌肉局部动作与候选控制空间",
+    "checkedDate": "2026-10-17",
+    "summary": "先建立可解释的局部分区/动作字典，再用独立扰动和实测数据辨识有效维数。肌肉主动生成张力；不同方向的局部位移、被动伸长和横向隆起不是额外的主动推拉轴。",
+    "dimensionSummary": {
+      "muscleEntries": 29,
+      "perSideOrMidlineSlots": 40,
+      "bilateralSlots": 79,
+      "voluntarySkeletalSlots": 77,
+      "autonomicToneSlots": 2,
+      "midlineConvention": "降眉间肌按一个中线通道；其余条目左右展开。",
+      "interpretation": "这些是候选参数字典的槽位数量，不是人体独立DOF数，也不是模型Jacobian秩。部分模式互斥、共享激活或机械耦合。",
+      "candidateLowerModel": "每个肌群只设一个幅值也可建立粗模型；分区模型用额肌/眼轮匝肌/鼻肌/口轮匝肌等区别检验增益。"
+    },
+    "basisEquation": "σ = σ_pass(F,f0,θ) − pI + Σ a_mrs T_mrs(λf,λ̇f) f_mrs⊗f_mrs ; det(F)≈1 ; Δx≈B(a0,q0)Δa + Jq(a0,q0)Δq",
+    "basisExplanation": "a_mrs∈[0,1] 为肌肉m、区域r、侧s的非负激活；f为局部纤维单位方向；F为形变梯度；q为独立定义的关节位姿。此式是拟议连续体/局部线性化结构，当前网页未求解该方程。 T≥0 代表主动拉伸张力强度；当前网格没有实测逐点纤维方向或组织材料参数。",
+    "rankWarning": "9个手工表情配方或动画截图只体现人为选定的组合，不能识别人类面部的经验DOF秩；未进行SVD来冒充生理辨识。",
+    "defaultModeMixing": "一般分区可受约束协同；口轮匝肌三种动作族优先互斥演示，避免重复计算共享纤维。"
+  },
+  "principles": [
+    {
+      "id": "active-tension",
+      "label": "主动张力，非主动双向推拉",
+      "text": "激活增加沿局部纤维的拉伸张力并有缩短趋向；负载下实际肌长也可能不变或延长。放松不是主动伸长，eccentric延长也不是主动推力。",
+      "sourceIds": [
+        "openstax-contraction"
+      ]
+    },
+    {
+      "id": "fiber-field",
+      "label": "方向是局部场",
+      "text": "扇形、环形或薄片肌肉需要随位置变化的纤维方向；一个全局端点向量只能作为粗近似。",
+      "sourceIds": [
+        "book",
+        "wu-2014"
+      ]
+    },
+    {
+      "id": "bulging",
+      "label": "横向隆起不单列为马达DOF",
+      "text": "近不可压缩的简化下，纵向缩短会伴随横向膨出；仅在均匀轴对称近似中可用λ⊥≈λ∥^(-1/2)。面肌受约束时不应逐点强套这个公式。",
+      "sourceIds": [
+        "wakeling-2020"
+      ]
+    },
+    {
+      "id": "anisotropy-vs-recruitment",
+      "label": "材料各向异性与分区招募分开",
+      "text": "各向异性描述同一组织沿/横纤维的力学响应不同；分区招募描述哪一片纤维被激活。不同区域运动方向也可能只是几何、附着或接触造成。",
+      "sourceIds": [
+        "wu-2014",
+        "wakeling-2020"
+      ]
+    },
+    {
+      "id": "joints-and-loads",
+      "label": "关节与外载另设变量",
+      "text": "下颌旋转/平移、头颈姿态、唇间/睑缘接触、气压和被动组织都会改变表面运动，不能重复算作肌肉主动通道。",
+      "sourceIds": [
+        "wu-2014",
+        "stavness-2013"
+      ]
+    },
+    {
+      "id": "identifiability",
+      "label": "动作字典大小不等于可辨识秩",
+      "text": "两个不同激活可产生近似同一表面运动；同一激活在不同下颌姿态也可产生不同唇形。仅观察表面或少量配方不能唯一倒推出肌肉激活。",
+      "sourceIds": [
+        "stavness-2013",
+        "gick-2020"
+      ]
+    },
+    {
+      "id": "testable-next-step",
+      "label": "用独立扰动检验增维是否有用",
+      "text": "固定姿态分别扰动候选区域，再改变下颌姿态；比较统一幅值、区域幅值、含局部纤维/接触三模型。用留出动作的地标与稠密表面位移误差、接触穿透量检验；阈值须按测量噪声预先设定。只有实测或经过验证的模型Jacobian可用于任务相关有效秩。",
+      "sourceIds": [
+        "wu-2014",
+        "stavness-2013"
+      ]
+    }
+  ],
+  "perMuscle": [
+    {
+      "muscleId": "frontalis",
+      "nameZh": "额肌",
+      "modes": [
+        {
+          "id": "medial_raise",
+          "label": "内侧提眉",
+          "part": "medial",
+          "directionZh": "内侧眉段向上；与皱眉肌共同作用时出现内高外低眉形",
+          "mechanism": "内侧近纵向纤维张力经眉部附着传递。上移区域和额纹随组织耦合变化。",
+          "expressions": [
+            "shock",
+            "fear",
+            "sad"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            54,
+            55
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "lateral_raise",
+          "label": "外侧提眉",
+          "part": "lateral",
+          "directionZh": "外侧眉段向上",
+          "mechanism": "外侧纤维区域参与提眉；两区共同激活可形成整体提眉。",
+          "expressions": [
+            "shock"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            54,
+            55
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "激活产生纤维向张力；与皱眉肌拮抗时局部可不缩短。取消激活后由邻近组织和拮抗作用回位，不是主动向下推。",
+      "regionalBehavior": "内侧与外侧招募不同；两区材料参数是否不同是另一个问题。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "2 是区域控制提案；不能由眉形独立反推出两区激活。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "occipitalis",
+      "nameZh": "枕肌",
+      "modes": [
+        {
+          "id": "scalp_retract",
+          "label": "后牵头皮",
+          "part": "whole",
+          "directionZh": "枕部头皮及帽状腱膜向后",
+          "mechanism": "后部肌腹张力牵动腱膜，与额腹机械耦合。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            54
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动后牵；向前位移可由额肌、腱膜和外力带动。",
+      "regionalBehavior": "先用每侧一个区域，保留腱膜跨区耦合。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "当前九种表情未给出其直接激活；空白不代表生理无作用。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "corrugator_supercilii",
+      "nameZh": "皱眉肌",
+      "modes": [
+        {
+          "id": "brow_medial_lower",
+          "label": "内收并降眉",
+          "part": "whole",
+          "directionZh": "眉向内下方聚拢；分量依纤维与约束变化",
+          "mechanism": "斜行与横向纤维共同把眉部软组织拉向内侧起点。",
+          "expressions": [
+            "furious",
+            "fear",
+            "disgusting",
+            "sad",
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            56,
+            57
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动张力使眉聚拢；额肌上拉可改变净位移。被额肌带长不等于主动伸长。",
+      "regionalBehavior": "当前先用一个局部纤维场；内收和下移是同一作用的耦合分量。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "不可把 X 与 Y 位移分量直接计为两个独立肌肉控制量。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "procerus",
+      "nameZh": "降眉间肌",
+      "modes": [
+        {
+          "id": "glabella_lower",
+          "label": "降眉间",
+          "part": "midline",
+          "directionZh": "眉间皮肤向下、鼻根出现横纹",
+          "mechanism": "短的近纵向纤维跨鼻根向眉间传递张力。",
+          "expressions": [
+            "furious",
+            "disgusting",
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            56,
+            57
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动降眉间；解除张力后可随额肌上移。皱纹是局部压缩/弯曲结果。",
+      "regionalBehavior": "先用一个中线控制，不把模型左右网格自动当作独立肌肉。",
+      "candidateDimension": 1,
+      "bilateralChannels": 1,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "网格分成左右并不证明存在两个独立可控通道。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "depressor_supercilii",
+      "nameZh": "降眉肌",
+      "modes": [
+        {
+          "id": "medial_brow_lower",
+          "label": "内侧降眉",
+          "part": "whole",
+          "directionZh": "内侧眉头向下",
+          "mechanism": "内眦上方小束局部张力牵动眉头。",
+          "expressions": [
+            "furious",
+            "disgusting",
+            "sad",
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            56,
+            57
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "局部主动下牵；回弹/上移来自减弱张力与邻近组织作用。",
+      "regionalBehavior": "与皱眉肌、眼轮匝肌相邻耦合，边界存在解剖变异。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "当前几何是示意；独立性和作用范围需个体验证。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "orbicularis_oculi",
+      "nameZh": "眼轮匝肌",
+      "modes": [
+        {
+          "id": "orbital_cheek_raise",
+          "label": "眶部提颊/紧闭",
+          "part": "orbital",
+          "directionZh": "眼周向局部环中心收聚，下外侧眶部带动面颊上移",
+          "mechanism": "曲线纤维逐点产生切向张力；不是整片肌肉沿单一箭头平移。",
+          "expressions": [
+            "smile",
+            "furious",
+            "disgusting",
+            "contempt"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            60,
+            61
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "palpebral_tighten",
+          "label": "睑部收紧/闭睑",
+          "part": "palpebral",
+          "directionZh": "眼睑边缘接近、眼裂减小；上睑以向下为主",
+          "mechanism": "睑部较薄的曲线纤维收缩；睑缘接触和眼球约束影响净位移。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            60,
+            62
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动收紧趋向闭睑；上睑提肌可同时对抗或抬睑，放松时不能解释为眼轮匝肌主动撑开眼裂。",
+      "regionalBehavior": "至少区分眶部与睑部；泪部在书中存在，但本候选空间不增加独立表情控制。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "两区可协同并非互斥；AU6/AU7 是可见动作描述，不等于两条已测独立神经轴。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "levator_palpebrae_superioris",
+      "nameZh": "上睑提肌",
+      "modes": [
+        {
+          "id": "upper_lid_raise",
+          "label": "上提上睑",
+          "part": "whole",
+          "directionZh": "上睑向上；不直接提升眉毛",
+          "mechanism": "深部骨骼肌通过腱膜牵动上睑，在眼球几何约束下运动。",
+          "expressions": [
+            "shock",
+            "fear",
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            58,
+            59,
+            64,
+            65
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动牵拉上睑；闭睑时可降低激活并受眼轮匝肌作用。",
+      "regionalBehavior": "先用单区张力，输出位移受腱膜和睑球接触约束。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "不能以眉毛上移替代此肌动作；未校准眼睑接触力学。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "superior_tarsal",
+      "nameZh": "上睑板肌",
+      "modes": [
+        {
+          "id": "autonomic_tone",
+          "label": "自主神经张力",
+          "part": "whole",
+          "directionZh": "对上睑位置提供较小的上提/维持作用",
+          "mechanism": "平滑肌张力参与睑位，不能当作随意骨骼肌控制。",
+          "expressions": [
+            "shock",
+            "fear",
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            58,
+            59
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "有主动平滑肌张力；放松降低支撑。其调控与骨骼肌随意激活不同。",
+      "regionalBehavior": "作为每侧一个自主张力背景参数，与上睑提肌通道分开。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "图中关联不证明人在表情中可独立随意调节该肌；候选维数计入总槽位，但排除随意骨骼肌槽位。",
+      "controlClass": "autonomic-tone",
+      "voluntaryCandidateDimension": 0,
+      "sourceIds": [
+        "book"
+      ],
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "nasalis",
+      "nameZh": "鼻肌",
+      "modes": [
+        {
+          "id": "alar_dilate",
+          "label": "翼部扩鼻孔",
+          "part": "alar",
+          "directionZh": "鼻翼向外，鼻孔开口增大",
+          "mechanism": "翼部局部纤维牵动鼻翼，受鼻软骨和皮肤连接影响。",
+          "expressions": [
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            76,
+            77,
+            80,
+            81
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "transverse_compress",
+          "label": "横部压鼻孔",
+          "part": "transverse",
+          "directionZh": "鼻翼/鼻背局部内收，鼻孔开口趋小",
+          "mechanism": "横向肌束张力通过鼻背腱膜/软组织改变鼻翼形状。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            76,
+            77,
+            82,
+            83
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "两部分都靠张力工作；外扩不是肌肉主动推开，内压也不是肌纤维主动压缩负力。",
+      "regionalBehavior": "扩与缩来自不同纤维区域及附着；当前来源网格未完整分区，需区域权重。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "两区应受共享组织约束；不能用同一整体缩放同时解释 AU38 与 AU39。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "dilator_naris",
+      "nameZh": "鼻孔扩张肌前部",
+      "modes": [
+        {
+          "id": "alar_rim_dilate",
+          "label": "鼻翼缘外牵",
+          "part": "whole",
+          "directionZh": "鼻翼缘向外，鼻孔开口增大",
+          "mechanism": "鼻翼缘小肌束张力牵拉软骨/皮肤。",
+          "expressions": [
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            76,
+            77,
+            80,
+            81
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动局部牵拉导致外扩；鼻孔回缩来自减弱张力、软骨弹性和其他肌群。",
+      "regionalBehavior": "先用一条局部张力通道；与鼻肌翼部有协同和可观测冗余。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "示意几何；不能因为两个滑块都扩鼻孔就断定生理自由度为2。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "depressor_septi_nasi",
+      "nameZh": "降鼻中隔肌",
+      "modes": [
+        {
+          "id": "septum_tip_lower",
+          "label": "下牵鼻中隔/鼻尖",
+          "part": "whole",
+          "directionZh": "鼻尖或鼻中隔向下，伴上唇/鼻孔局部变化",
+          "mechanism": "附着和纤维亚群差异改变作用方向，鼻孔结果取决于个体结构。",
+          "expressions": [
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            76,
+            77,
+            80,
+            81
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动下牵；鼻孔增大或变小不能仅由该肌的一个固定箭头保证。",
+      "regionalBehavior": "先用一通道，保留个体附着参数而不是增加一个任意推的通道。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "书中鼻孔效果表述不完全一致；当前不规定通用扩张/压缩方向。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "compressor_naris",
+      "nameZh": "鼻孔压肌",
+      "modes": [
+        {
+          "id": "nostril_compress",
+          "label": "局部压鼻孔",
+          "part": "whole",
+          "directionZh": "鼻孔开口趋小",
+          "mechanism": "小肌束牵动鼻翼/鼻孔壁，作用通过几何和附着产生。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            76,
+            77,
+            82,
+            83
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动张力引起开口缩小；恢复开口可来自弹性和扩张肌牵拉。",
+      "regionalBehavior": "此 ID 指书中的 compressor narium minor，与鼻肌横部区分。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "示意几何、边界变异；与鼻肌横部输出可能高度相关。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "levator_labii_superioris_alaeque_nasi",
+      "nameZh": "提上唇鼻翼肌",
+      "modes": [
+        {
+          "id": "nasal_branch",
+          "label": "鼻翼支牵引",
+          "part": "nasal-branch",
+          "directionZh": "鼻翼上提并牵动鼻侧褶皱",
+          "mechanism": "按末端鼻翼支设置局部作用权重，仍沿源纤维张力方向作用。",
+          "expressions": [
+            "furious",
+            "disgusting"
+          ],
+          "confidence": "model-proposal",
+          "bookPages": [
+            78,
+            79
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "labial_branch",
+          "label": "上唇支牵引",
+          "part": "labial-branch",
+          "directionZh": "内侧上唇向上，鼻唇沟加深",
+          "mechanism": "按末端上唇支设置局部作用权重，耦合鼻翼与唇部组织。",
+          "expressions": [
+            "furious",
+            "disgusting"
+          ],
+          "confidence": "model-proposal",
+          "bookPages": [
+            78,
+            79
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动牵引形成皱鼻/上提上唇；放松后的下降是耦合回复。",
+      "regionalBehavior": "书支持鼻翼和上唇附着支；将其拆成两个可调通道属于模型提案。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "两个附着支不自动证明可以独立招募；默认可用共享激活加可调分配比。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "levator_labii_superioris",
+      "nameZh": "提上唇肌",
+      "modes": [
+        {
+          "id": "upper_lip_raise",
+          "label": "上提/外翻上唇",
+          "part": "whole",
+          "directionZh": "上唇向上并外翻",
+          "mechanism": "薄片纤维张力由眶下缘传向上唇；外翻为附着和唇体形变的结果。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            112,
+            113
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动上牵；外翻不是额外一条主动推力。",
+      "regionalBehavior": "先保留一局部纤维张力通道，允许唇体厚度与旋转随之改变。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "无当前整表情关联不等于无作用；上提与外翻暂不计两个独立轴。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "zygomaticus_minor",
+      "nameZh": "颧小肌",
+      "modes": [
+        {
+          "id": "upper_lip_oblique_raise",
+          "label": "斜提上唇",
+          "part": "whole",
+          "directionZh": "上唇向上外方，鼻唇沟加深",
+          "mechanism": "斜行纤维从颧骨向上唇传递张力。",
+          "expressions": [
+            "fear",
+            "disgusting"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            106,
+            107
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动牵上唇；邻近肌收缩可造成被动位移/拉长。",
+      "regionalBehavior": "单区控制，和颧大肌口角终点分开。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "动作不是直接以口角为唯一终点；书中英文标题有勘误。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "zygomaticus_major",
+      "nameZh": "颧大肌",
+      "modes": [
+        {
+          "id": "corner_oblique_raise",
+          "label": "上外后牵口角",
+          "part": "whole",
+          "directionZh": "口角向上、外、后方移动",
+          "mechanism": "斜带张力通过口角肌结传递；多方向位移来自一条空间作用线与软组织耦合。",
+          "expressions": [
+            "smile",
+            "contempt"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            104,
+            105
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动拉口角；口角内下回位可由拮抗肌与被动组织完成。",
+      "regionalBehavior": "先每侧一个通道；单侧激活形成不对称示例。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "上/外/后是耦合分量，不是该肌3个独立控制量；轻蔑左侧只是示例选择。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "levator_anguli_oris",
+      "nameZh": "提口角肌",
+      "modes": [
+        {
+          "id": "corner_raise",
+          "label": "上提并稳定口角",
+          "part": "whole",
+          "directionZh": "口角主要向上",
+          "mechanism": "深层短宽肌束向犬齿窝方向牵口角肌结。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            110,
+            111
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动上牵或在共同收缩时稳定口角；稳定可伴几乎零净位移。",
+      "regionalBehavior": "单区张力，并与口轮匝肌和颧肌共同传力。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "不能从静止口角断言此肌未激活。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "risorius",
+      "nameZh": "笑肌",
+      "modes": [
+        {
+          "id": "corner_lateral_retract",
+          "label": "横向外牵口角",
+          "part": "whole",
+          "directionZh": "口角主要水平向外后方",
+          "mechanism": "横向细肌束张力增加口宽；与笑容的上提作用不同。",
+          "expressions": [
+            "fear"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            114,
+            115
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动外牵；口角向内可由口轮匝肌、松弛回复或外力带动。",
+      "regionalBehavior": "一通道，与颧大肌的斜上牵方向分开。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "个体存在形态差异；名称为笑肌不表示它是所有笑容的主要驱动。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "buccinator",
+      "nameZh": "颊肌",
+      "modes": [
+        {
+          "id": "cheek_compress",
+          "label": "收紧颊壁/口角",
+          "part": "whole",
+          "directionZh": "颊壁贴向牙列、口角收紧",
+          "mechanism": "曲面薄片沿局部纤维产生张力，形成对颊腔的约束。",
+          "expressions": [
+            "contempt"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            87,
+            96,
+            97
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "肌肉张力可使颊壁内收；鼓腮由气压及其他边界条件造成，不能等同于颊肌主动向外推。",
+      "regionalBehavior": "用曲面上的局部纤维场；气压须作为单独外载。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "一个颊壁输出方向无法唯一确定激活；不要把鼓腮当作负激活。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "orbicularis_oris",
+      "nameZh": "口轮匝肌",
+      "modes": [
+        {
+          "id": "incisive_pucker",
+          "label": "切牙纤维噘嘴 / AU18",
+          "part": "incisive-family",
+          "directionZh": "上下口角分别内上/内下聚拢，合成为口部聚拢与唇前突",
+          "mechanism": "按书中切牙相关纤维动作构成噘嘴模式；前突是三维耦合结果，不是肌肉主动向前推。",
+          "expressions": [
+            "pout"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            87,
+            88,
+            89
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "lip_tightener",
+          "label": "收紧变薄 / AU23",
+          "part": "marginal-tightening-family",
+          "directionZh": "唇缘收紧变薄；口宽不必缩短",
+          "mechanism": "使用唇缘紧张模式，保留口角间距与唇红厚度的不同变化。",
+          "expressions": [
+            "angry"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            90,
+            91
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "peripheral_funnel",
+          "label": "外周漏斗/外翻 / AU22",
+          "part": "peripheral-family",
+          "directionZh": "唇红向外翻并前伸，形成漏斗状开口",
+          "mechanism": "外周纤维与唇体厚度、口唇接触和下颌位置共同决定形状。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            92,
+            93,
+            94
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "所有模式均由纤维张力实现；前突/外翻不是独立推力。张口时本肌可放松并被拉开；微笑页未给出它的明确主动方向，不能补成有量值激活。",
+      "regionalBehavior": "3 个模式族是动作字典；它们共享组织，适合互斥预设或受约束混合。若拆上下唇与左右区域，维数需要重新定义。",
+      "candidateDimension": 3,
+      "bilateralChannels": 6,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "candidateDimension=3 是候选动画模式数，不是已证实三条独立运动神经通道；不能把 AU18、AU22、AU23 无限制线性相加。",
+      "modeMixing": "alternative-or-constrained",
+      "explicitRelaxedIn": [
+        "furious",
+        "shock",
+        "fear"
+      ],
+      "passiveOrUnresolvedIn": [
+        "smile"
+      ],
+      "sourceIds": [
+        "book",
+        "stavness-2013",
+        "gick-2020"
+      ],
+      "voluntaryCandidateDimension": 3,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "depressor_anguli_oris",
+      "nameZh": "降口角肌",
+      "modes": [
+        {
+          "id": "corner_lower",
+          "label": "下外牵口角",
+          "part": "whole",
+          "directionZh": "口角向下并略向外",
+          "mechanism": "三角扇形肌片各局部纤维向下颌附着传递张力。",
+          "expressions": [
+            "disgusting",
+            "sad"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            102,
+            103
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动下牵；颧肌对抗或组织回复可带动上移。",
+      "regionalBehavior": "先一条幅值控制，空间方向由扇形纤维场决定。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "扇形几何不自动等于可独立控制任意扇区。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "depressor_labii_inferioris",
+      "nameZh": "降下唇肌",
+      "modes": [
+        {
+          "id": "lower_lip_lower",
+          "label": "下牵/外翻下唇",
+          "part": "whole",
+          "directionZh": "下唇向下并外翻，唇间间隙可增加",
+          "mechanism": "薄片纤维从下颌向下唇施加张力；下唇动作与下颌关节运动区分。",
+          "expressions": [
+            "smile",
+            "furious",
+            "shock",
+            "fear"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            108,
+            109
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动下牵下唇；不负责主动把整块下颌骨向下推。",
+      "regionalBehavior": "一条局部控制，附加下颌位姿造成的随动不重复计入肌肉DOF。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "下唇运动与张口关节运动可同时发生，但不是同一自由度。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "mentalis",
+      "nameZh": "颏肌",
+      "modes": [
+        {
+          "id": "chin_lower_lip_raise",
+          "label": "抬颏皮肤/下唇中部",
+          "part": "whole",
+          "directionZh": "颏部皮肤和下唇中部向上，颏皮肤可起皱",
+          "mechanism": "短肌束张力作用于颏部软组织，配合口轮匝肌形成噘嘴。",
+          "expressions": [
+            "disgusting",
+            "angry",
+            "pout"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            87,
+            89,
+            90,
+            91,
+            100,
+            101,
+            197
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动抬软组织；不把整块颏骨抬起。皮肤起皱是局部面内压缩/弯曲。",
+      "regionalBehavior": "先左右各一通道；皱纹方向不是额外激活轴。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "颏肌在愤怒页及 AU23 页作为协同肌列出；出现该肌不能单独判定表情。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "platysma",
+      "nameZh": "颈阔肌",
+      "modes": [
+        {
+          "id": "mandibular_sheet",
+          "label": "下颌缘/颈皮紧张",
+          "part": "mandibular",
+          "directionZh": "下颌缘和颈部皮肤趋向下方牵张",
+          "mechanism": "宽薄片纵斜行纤维张力改变颈部皮肤与下颌缘软组织。",
+          "expressions": [
+            "fear"
+          ],
+          "confidence": "model-proposal",
+          "bookPages": [
+            116,
+            117
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "labial_sheet",
+          "label": "下唇部牵引",
+          "part": "labial",
+          "directionZh": "下唇向下后方",
+          "mechanism": "按下唇附着区域设置局部作用权重。",
+          "expressions": [
+            "fear"
+          ],
+          "confidence": "model-proposal",
+          "bookPages": [
+            116,
+            117
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "modiolar_sheet",
+          "label": "口角部牵引",
+          "part": "modiolar",
+          "directionZh": "口角向下外后方",
+          "mechanism": "按口角肌结附着区域设置局部作用权重。",
+          "expressions": [
+            "fear"
+          ],
+          "confidence": "model-proposal",
+          "bookPages": [
+            116,
+            117
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动牵张颈皮和下脸软组织；颈部伸长/头部转动会被动拉伸该肌片。",
+      "regionalBehavior": "书有不同附着区域；3个可调分区是建模假设，可先用共同激活联动。",
+      "candidateDimension": 3,
+      "bilateralChannels": 6,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "宽肌片不能仅用两端缩短代表全部位移；三分区独立招募仍需数据。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 3,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "masseter",
+      "nameZh": "咬肌",
+      "modes": [
+        {
+          "id": "superficial_elevate",
+          "label": "浅层闭颌张力",
+          "part": "superficial",
+          "directionZh": "通过下颌支产生闭颌方向力矩",
+          "mechanism": "浅层斜行束收缩趋向上提下颌；关节与咬合约束决定实际运动。",
+          "expressions": [],
+          "confidence": "model-proposal",
+          "bookPages": [
+            118,
+            119,
+            122,
+            123
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "deep_elevate_stabilize",
+          "label": "深层闭颌/稳定张力",
+          "part": "deep",
+          "directionZh": "闭颌或共同收缩时稳定下颌",
+          "mechanism": "深层几何与浅层不同，分别保留局部纤维场及候选幅值。",
+          "expressions": [],
+          "confidence": "model-proposal",
+          "bookPages": [
+            118,
+            119,
+            122,
+            123
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动闭颌/咬紧可近似等长；张口表情书中明确放松，肌长变化可由关节运动造成。",
+      "regionalBehavior": "真实源网格分浅深层；分层几何支持不同力线，独立驱动仍为模型提案。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "2通道不能解释为下颌2个关节自由度，也不代表已辨识的神经分区。",
+      "explicitRelaxedIn": [
+        "furious",
+        "shock",
+        "fear"
+      ],
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "temporalis",
+      "nameZh": "颞肌",
+      "modes": [
+        {
+          "id": "elevation_region",
+          "label": "前部为主的闭颌作用",
+          "part": "anterior-dominant",
+          "directionZh": "上提下颌",
+          "mechanism": "扇形纤维主要向喙突传递张力，前部近纵向力线贡献闭颌。",
+          "expressions": [],
+          "confidence": "model-proposal",
+          "bookPages": [
+            118,
+            119,
+            120,
+            121
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "retraction_region",
+          "label": "后部为主的后缩作用",
+          "part": "posterior-dominant",
+          "directionZh": "帮助下颌后缩并参与稳定",
+          "mechanism": "后部纤维更接近水平，候选局部激活可改变合力方向。",
+          "expressions": [],
+          "confidence": "model-proposal",
+          "bookPages": [
+            118,
+            119,
+            120,
+            121
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动牵拉下颌；张口时可降低激活并被拉长，后缩不是主动向后推骨。",
+      "regionalBehavior": "扇形肌内方向变化显著；先用2个区域幅值加连续纤维场。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "分区幅值与关节姿态相互作用；未用EMG或运动学验证区域独立性。",
+      "explicitRelaxedIn": [
+        "furious",
+        "shock",
+        "fear"
+      ],
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "medial_pterygoid",
+      "nameZh": "翼内肌",
+      "modes": [
+        {
+          "id": "elevate_protrude",
+          "label": "闭颌/前伸协同",
+          "part": "whole",
+          "directionZh": "双侧主要上提并协助前伸；单侧可产生侧向分量",
+          "mechanism": "由内侧下颌附着与关节约束形成耦合力矩。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            118,
+            119,
+            124,
+            125
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动张力带动或稳定下颌；张口表情中书中列为放松。",
+      "regionalBehavior": "每侧先1通道，侧向作用由左右激活差与姿态得到。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "上提、前伸、侧移是系统输出，不应给同一肌任意3轴推拉。",
+      "explicitRelaxedIn": [
+        "furious",
+        "shock",
+        "fear"
+      ],
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "lateral_pterygoid",
+      "nameZh": "翼外肌",
+      "modes": [
+        {
+          "id": "inferior_protraction",
+          "label": "下头髁突前移/开口协同",
+          "part": "inferior",
+          "directionZh": "髁突向前；与其他开颌因素共同形成张口",
+          "mechanism": "下头张力牵髁颈，关节旋转与平移、舌骨上下肌等共同参与。",
+          "expressions": [
+            "furious",
+            "shock",
+            "fear"
+          ],
+          "confidence": "book-supported",
+          "bookPages": [
+            118,
+            119,
+            126,
+            127
+          ],
+          "independenceEstablished": false
+        },
+        {
+          "id": "superior_disc_stabilization",
+          "label": "上头盘髁稳定",
+          "part": "superior",
+          "directionZh": "维持盘髁关系，方向依咬合与关节状态变化",
+          "mechanism": "上头候选张力用于盘髁系统稳定，不直接复制下头张口动作。",
+          "expressions": [],
+          "confidence": "book-supported",
+          "bookPages": [
+            118,
+            119,
+            126,
+            127
+          ],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "两头均产生张力；开口不等于下颌被肌肉向下推，稳定也可能没有显著位移。",
+      "regionalBehavior": "至少把上下头机制分开；模型将其设为2个候选幅值。",
+      "candidateDimension": 2,
+      "bilateralChannels": 4,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "上下头不是两根任意操纵杆；实际关节运动、激活时序与稳定作用须单独验证。",
+      "sourceIds": [
+        "book"
+      ],
+      "voluntaryCandidateDimension": 2,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    },
+    {
+      "muscleId": "sternocleidomastoid",
+      "nameZh": "胸锁乳突肌",
+      "modes": [
+        {
+          "id": "neck_coupled_tension",
+          "label": "头颈耦合转动",
+          "part": "whole",
+          "directionZh": "单侧常见同侧侧屈、对侧旋转；双侧效应随颈姿态变化",
+          "mechanism": "跨颈部的张力通过不同关节力臂形成头颈运动或稳定。",
+          "expressions": [],
+          "confidence": "model-proposal",
+          "bookPages": [],
+          "independenceEstablished": false
+        }
+      ],
+      "activeVsPassive": "主动产生跨关节张力；转头也可被其他颈肌或外力带动。",
+      "regionalBehavior": "当前每侧一通道；多个颈椎关节角单独作为姿态变量。",
+      "candidateDimension": 1,
+      "bilateralChannels": 2,
+      "dimensionEvidence": "model-proposal",
+      "limitation": "未由这本书的九种表情直接支持；不是面部情绪配方的独立已验证驱动。",
+      "sourceIds": [
+        "openstax-head-neck"
+      ],
+      "voluntaryCandidateDimension": 1,
+      "dimensionUnit": "candidate scalar regional/mode slot per side; midline procerus counted once"
+    }
+  ],
+  "sources": [
+    {
+      "id": "book",
+      "type": "book",
+      "title": "Uldis Zarins, Anatomy of Facial Expression, First Edition (2017); Chinese V1.1 page numbering",
+      "scope": "肌肉分布、动作类型、表情示例；页码为1-based PDF，印刷页码通常减2。量值、独立通道数和分区权重并非书中测量。",
+      "url": "methods.html#book"
+    },
+    {
+      "id": "openstax-contraction",
+      "type": "official-textbook",
+      "title": "OpenStax, Muscle Fiber Contraction and Relaxation; Control of Muscle Tension",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation",
+      "relatedUrl": "https://openstax.org/books/anatomy-and-physiology/pages/10-4-nervous-system-control-of-muscle-tension",
+      "scope": "主动张力与放松机制；缩短、等长及受载延长不能混同。"
+    },
+    {
+      "id": "wakeling-2020",
+      "type": "primary-research",
+      "title": "Wakeling et al. (2020), The Energy of Muscle Contraction. I. Tissue Force and Deformation During Fixed-End Contractions",
+      "url": "https://doi.org/10.3389/fphys.2020.00813",
+      "scope": "三维肌肉模型中纤维缩短、横向隆起和近不可压缩基质相互作用；研究对象为腓肠肌，不能直接当作面肌参数标定。"
+    },
+    {
+      "id": "wu-2014",
+      "type": "primary-research",
+      "title": "Wu, Hung & Mithraratne (2014), Generating Facial Expressions Using an Anatomically Accurate Biomechanical Model",
+      "url": "https://doi.org/10.1109/TVCG.2014.2339835",
+      "scope": "面部模型使用局部纤维方向、横观各向同性、组织非均质和接触；不能据此认定当前网页是相同验证模型。"
+    },
+    {
+      "id": "stavness-2013",
+      "type": "primary-research",
+      "title": "Stavness et al. (2013), A biomechanical modeling study of the effects of the orbicularis oris muscle and jaw posture on lip shape",
+      "url": "https://arxiv.org/abs/1307.2548",
+      "doi": "10.1044/1092-4388(2012/12-0200)",
+      "scope": "模型中的口轮匝肌深度/外周位置和下颌姿态影响闭唇、前突、圆唇；参数与结论有模型范围。"
+    },
+    {
+      "id": "gick-2020",
+      "type": "primary-research",
+      "title": "Gick et al. (2020), Quantal biomechanical effects in speech postures of the lips",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7509306/",
+      "doi": "10.1152/jn.00676.2019",
+      "scope": "唇形对激活非线性且依赖肌群和机械约束；低维描述或模拟协同不直接证明神经控制自由度。"
+    },
+    {
+      "id": "openstax-head-neck",
+      "type": "official-textbook",
+      "title": "OpenStax, Axial Muscles of the Head, Neck, and Back",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back",
+      "scope": "头颈与咀嚼肌基础动作，补充未在表情页指定的颈部肌群。"
+    }
+  ]
+}

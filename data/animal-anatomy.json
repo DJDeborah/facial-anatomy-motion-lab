@@ -1,0 +1,699 @@
+{
+  "version": 1,
+  "framing": "从少量动作通道开始，逐步加入眼、耳、触须、口唇和眉部控制。阶段与通道数量是本演示的建模选择，不是动物肌肉数量、智力、情绪丰富度或进化等级。0–1 表示归一化演示幅度，不是测得的肌肉激活、关节角或 FACS 强度；连接点和轨迹为示意。",
+  "sources": [
+    {
+      "id": "animalfacs",
+      "title": "AnimalFACS 官方项目",
+      "url": "https://animalfacs.github.io/AnimalFACS/",
+      "note": "介绍以可见面部运动为对象的编码工具，以及各物种独立系统。"
+    },
+    {
+      "id": "fish-linkage",
+      "title": "Westneat (1990) · Feeding mechanics of teleost fishes: A test of four-bar linkage models",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29865760/",
+      "note": "隆头鱼摄食运动的实测与连杆模型；说明鱼类头部运动不能概括为单一铰链。"
+    },
+    {
+      "id": "fish-ventilation",
+      "title": "Strother (2013) · Hydrodynamic resistance and flow patterns in the gills of a tilapine fish",
+      "url": "https://doi.org/10.1242/jeb.079517",
+      "note": "罗非鱼鳃流动的原始实验研究；口腔和鳃盖协同参与通水。"
+    },
+    {
+      "id": "frog-eye",
+      "title": "Levine, Monroy & Brainerd (2004) · Contribution of eye retraction to swallowing performance in the northern leopard frog",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15010487/",
+      "note": "豹蛙的录像、透视、肌电及神经阻断实验；眼回缩是辅助吞咽机制。"
+    },
+    {
+      "id": "frog-breathing",
+      "title": "West & Jones (1975) · Breathing movements in the frog Rana pipiens. I",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1079159/",
+      "note": "豹蛙口腔及肺通气的力学研究；口底泵动与声囊展示应区分。"
+    },
+    {
+      "id": "anole-dewlap",
+      "title": "Bels (1990) · The mechanism of dewlap extension in Anolis carolinensis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29865772/",
+      "note": "绿安乐蜥喉扇的舌骨装置、透视及肌肉刺激实验。"
+    },
+    {
+      "id": "anole-display",
+      "title": "Johnson & Wade (2010) · Behavioural display systems across nine Anolis lizard species",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2871862/",
+      "note": "九种安乐蜥喉扇及相关肌肉、软骨的比较；展示并非只存在于哺乳动物。"
+    },
+    {
+      "id": "anole-cranial",
+      "title": "Willard (1915) · The cranial nerves of Anolis carolinensis",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Bulletin_of_the_Museum_of_Comparative_Zoology_at_Harvard_College_%28IA_bulletinofmuseum59harv%29.pdf",
+      "note": "原始解剖文献，第 31–38 页讨论眼眶、眼睑、舌骨和颌部结构；不提供本演示的运动量标定。"
+    },
+    {
+      "id": "catfacs",
+      "title": "Caeiro, Burrows & Waller (2017) · Development and application of CatFACS",
+      "url": "https://irep.ntu.ac.uk/id/eprint/41463/1/1383832_Waller.pdf",
+      "note": "原始 CatFACS 论文；表 1 列出 AU、AD、EAD 及肌肉基础。"
+    },
+    {
+      "id": "dogfacs-study",
+      "title": "Bremhorst et al. (2019) · Differences in facial expressions during positive anticipation and frustration in dogs awaiting a reward",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6917793/",
+      "note": "原始 DogFACS 应用研究；表 4 提供动作定义，不能由单一动作反推出唯一情绪。"
+    },
+    {
+      "id": "dog-wolf",
+      "title": "Kaminski et al. (2019) · Evolution of facial muscle anatomy in dogs",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6642381/",
+      "note": "解剖比较含 6 犬、4 狼；LAOM 结果存在样本与品种范围，行为比较另有样本。"
+    },
+    {
+      "id": "canid-2024",
+      "title": "Sexton et al. (2024) · Raising an Eye at Facial Muscle Morphology in Canids",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11118188/",
+      "note": "10 个犬科标本的初步比较；相关眼周肌并非家犬独有。"
+    },
+    {
+      "id": "dog-whiskers",
+      "title": "The canine vibrissal system as a highly innervated and functional sensory organ (2025)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11914073/",
+      "note": "犬触须的录像与组织学研究；观察到吻部触须前伸及触碰引起的眨眼。"
+    },
+    {
+      "id": "head-homology",
+      "title": "Diogo et al. (2008) · From fish to modern humans: comparative anatomy, homologies and evolution of the head and neck musculature",
+      "url": "https://doi.org/10.1111/j.1469-7580.2008.00953.x",
+      "note": "跨类群解剖比较；颌部、舌骨及面部肌群需要区分，复杂度随所选指标改变。"
+    },
+    {
+      "id": "facial-evolution",
+      "title": "Diogo et al. (2009) · On the origin, homologies and evolution of primate facial muscles",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19531159/",
+      "note": "面部肌同源关系与命名比较；不能把演化画成现代鱼→蛙→蜥蜴→猫→狗→人的直线。"
+    }
+  ],
+  "species": [
+    {
+      "id": "fish",
+      "name": "真骨鱼",
+      "en": "Teleost fish",
+      "latin": "Teleostei · 通用形态示意",
+      "level": 1,
+      "tag": "颌与鳃盖",
+      "summary": "先用两个可见通道理解口部和鳃盖联动。鱼的颅骨、舌骨及颌部实际上可能形成复杂机构。",
+      "mechanism": "示意下颌开度与鳃盖外展；真实摄食和通气需要多个骨骼、肌肉与水压协同。",
+      "limit": "本模型综合真骨鱼的常见形态，不代表某一物种的实测解剖。没有为这些通道冒用 FACS 编码。",
+      "referenceIds": [
+        "fish-linkage",
+        "fish-ventilation"
+      ],
+      "channels": [
+        {
+          "id": "jaw",
+          "name": "颌开度",
+          "en": "Jaw opening",
+          "structure": "颌骨、下颌内收肌群及开颌联动结构",
+          "mechanism": "改变口部开度；鱼类常同时出现上颌前伸、舌骨下降等联动。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "skeletal",
+          "limit": "这里只保留下颌开合，不模拟吸食水动力或完整颅骨运动。",
+          "sources": [
+            "fish-linkage"
+          ]
+        },
+        {
+          "id": "operculum",
+          "name": "鳃盖外展",
+          "en": "Opercular opening",
+          "structure": "鳃盖骨及相关肌群",
+          "mechanism": "改变鳃盖侧方开度，作为口腔—鳃盖泵的外观入口。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "skeletal",
+          "limit": "鳃盖外展不等于愤怒，也不能仅由开度推算供氧量；真实通气有相位关系。",
+          "sources": [
+            "fish-ventilation"
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "name": "参考姿态",
+          "description": "闭合附近的示意基准。",
+          "values": {
+            "jaw": 0,
+            "operculum": 0
+          }
+        },
+        {
+          "id": "mouth-open",
+          "name": "口部打开",
+          "description": "单独观察颌开度，非完整摄食动作。",
+          "values": {
+            "jaw": 0.8,
+            "operculum": 0.15
+          }
+        },
+        {
+          "id": "opercular-open",
+          "name": "鳃盖打开",
+          "description": "单独观察鳃盖外展。",
+          "values": {
+            "jaw": 0.15,
+            "operculum": 0.9
+          }
+        }
+      ]
+    },
+    {
+      "id": "frog",
+      "name": "北方豹蛙",
+      "en": "Northern leopard frog",
+      "latin": "Rana pipiens / Lithobates pipiens",
+      "level": 2,
+      "tag": "眼回缩与口底",
+      "summary": "加入眼球回缩和口底泵动，比较外观看似表情、但参与吞咽或通气的动作。",
+      "mechanism": "眼回缩由 retractor bulbi 等结构参与；喉部通道表示口底位移，不表示声囊充气。",
+      "limit": "眼回缩可以辅助吞咽，但并非吞咽的必要开关。三条通道不是全部蛙类头部自由度。",
+      "referenceIds": [
+        "frog-eye",
+        "frog-breathing",
+        "head-homology"
+      ],
+      "channels": [
+        {
+          "id": "jaw",
+          "name": "颌开度",
+          "en": "Jaw opening",
+          "structure": "下颌骨、开颌与闭颌肌群",
+          "mechanism": "以下颌开合表示口裂变化。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "skeletal",
+          "limit": "不把颞肌、咬肌的人类命名直接套用到蛙的所有颌肌；未模拟舌与食团。",
+          "sources": [
+            "head-homology",
+            "frog-eye"
+          ]
+        },
+        {
+          "id": "eyeRetract",
+          "name": "眼球回缩",
+          "en": "Eye retraction",
+          "structure": "眼球牵引肌 retractor bulbi",
+          "mechanism": "眼球向口咽方向回缩，可辅助舌主导的食物后送。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "sensory",
+          "limit": "这是眼球位移，不是仅靠眼睑闭合；具体轨迹和深度未标定。",
+          "sources": [
+            "frog-eye"
+          ]
+        },
+        {
+          "id": "throat",
+          "name": "口底泵动",
+          "en": "Buccal-floor movement",
+          "structure": "口底、舌骨相关肌群及通气阀门",
+          "mechanism": "以口底/喉部轮廓起伏表示口腔容积变化。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "skeletal",
+          "limit": "不模拟声囊；真实肺通气还取决于鼻孔和声门时序。",
+          "sources": [
+            "frog-breathing"
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "name": "参考姿态",
+          "description": "三个通道回到示意基准。",
+          "values": {
+            "jaw": 0,
+            "eyeRetract": 0,
+            "throat": 0
+          }
+        },
+        {
+          "id": "eye-retraction",
+          "name": "眼回缩",
+          "description": "隔离观察辅助吞咽的眼球运动。",
+          "values": {
+            "jaw": 0.08,
+            "eyeRetract": 0.9,
+            "throat": 0.1
+          }
+        },
+        {
+          "id": "buccal-floor",
+          "name": "口底位移",
+          "description": "口保持近闭合时观察口底运动。",
+          "values": {
+            "jaw": 0,
+            "eyeRetract": 0,
+            "throat": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "id": "lizard",
+      "name": "绿安乐蜥",
+      "en": "Green anole",
+      "latin": "Anolis carolinensis",
+      "level": 3,
+      "tag": "可展开的喉扇",
+      "summary": "增加一种可视信号器官：舌骨装置展开喉扇。它说明非哺乳动物也有主动的视觉展示。",
+      "mechanism": "喉扇由舌骨相关肌肉驱动软骨支架展开；眼睑和颌部另有独立运动。",
+      "limit": "以具有明显喉扇的个体为示意，不推广到全部蜥蜴或爬行动物。展示功能不等于可直接读取情绪。",
+      "referenceIds": [
+        "anole-dewlap",
+        "anole-display",
+        "anole-cranial"
+      ],
+      "channels": [
+        {
+          "id": "jaw",
+          "name": "颌开度",
+          "en": "Jaw opening",
+          "structure": "下颌、depressor mandibulae 与颌内收肌群",
+          "mechanism": "改变下颌开度；开颌和闭颌依赖不同作用方向的肌群。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "skeletal",
+          "limit": "展示单个开合通道，不模拟完整咬合或颅骨运动。",
+          "sources": [
+            "anole-cranial",
+            "head-homology"
+          ]
+        },
+        {
+          "id": "blink",
+          "name": "眼睑闭合",
+          "en": "Eyelid closure",
+          "structure": "眼睑及眼眶相关结构",
+          "mechanism": "示意眼裂由开放到闭合的外观变化。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "sensory",
+          "limit": "只画可见闭合，不将哺乳动物眼轮匝肌模式或 AU145 编码套用到安乐蜥。",
+          "sources": [
+            "anole-cranial"
+          ]
+        },
+        {
+          "id": "dewlap",
+          "name": "喉扇展开",
+          "en": "Dewlap extension",
+          "structure": "舌骨装置、第二角鳃软骨及相关肌群",
+          "mechanism": "肌肉牵动舌骨杠杆，支架向前下方运动并撑开喉扇。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "display",
+          "limit": "不是给喉部气囊充气；研究对具体肌肉命名和力传递描述有差异，本图只表示机构原理。",
+          "sources": [
+            "anole-dewlap",
+            "anole-display"
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "id": "reference",
+          "name": "参考姿态",
+          "description": "喉扇收拢、眼睑开放。",
+          "values": {
+            "jaw": 0,
+            "blink": 0,
+            "dewlap": 0
+          }
+        },
+        {
+          "id": "dewlap-open",
+          "name": "喉扇展开",
+          "description": "单独观察喉扇展示机构。",
+          "values": {
+            "jaw": 0,
+            "blink": 0,
+            "dewlap": 0.95
+          }
+        },
+        {
+          "id": "jaw-and-lid",
+          "name": "颌与眼睑",
+          "description": "组合检查颌开度和眼睑通道，不赋予情绪含义。",
+          "values": {
+            "jaw": 0.7,
+            "blink": 0.65,
+            "dewlap": 0.2
+          }
+        }
+      ]
+    },
+    {
+      "id": "cat",
+      "name": "家猫",
+      "en": "Domestic cat",
+      "latin": "Felis catus",
+      "level": 4,
+      "tag": "耳、触须与口唇",
+      "summary": "从骨骼动作扩展到面部软组织、耳廓和触须。CatFACS 描述可见运动，不把一个动作等同于一种情绪。",
+      "mechanism": "口唇、眼睑、耳廓与触须垫可产生不同方向的局部运动；一个示意通道可能合并多个实际动作。",
+      "limit": "五条通道是演示选取，不是猫只有五种表情。猫与狗不存在由本模型证明的复杂度先后。",
+      "referenceIds": [
+        "catfacs",
+        "animalfacs"
+      ],
+      "channels": [
+        {
+          "id": "jaw",
+          "name": "下颌下降",
+          "en": "Jaw drop",
+          "structure": "下颌与非表情肌系统",
+          "mechanism": "下颌向腹侧下降，增加齿间距离。",
+          "code": "AU26",
+          "codeSystem": "CatFACS",
+          "kind": "skeletal",
+          "limit": "AU26 仅指相应的下颌下降外观；主动大幅拉伸应另辨 AU27，唇分开另记 AU25。",
+          "sources": [
+            "catfacs"
+          ]
+        },
+        {
+          "id": "blink",
+          "name": "眼睑闭合",
+          "en": "Blink / eye closure",
+          "structure": "眼轮匝肌等眼睑相关结构",
+          "mechanism": "上下眼睑接近并闭合。",
+          "code": "AU145",
+          "codeSystem": "CatFACS",
+          "kind": "soft-tissue",
+          "limit": "AU145 对应短暂完整眨眼；持续闭合应辨 AU143，滑块部分闭合不自动构成这两个码。",
+          "sources": [
+            "catfacs"
+          ]
+        },
+        {
+          "id": "ears",
+          "name": "耳廓转动",
+          "en": "Ear movement",
+          "structure": "耳廓肌群",
+          "mechanism": "用一条轴观察耳廓姿态变化。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "soft-tissue",
+          "limit": "一轴演示合并了多种方向，不对应单一 EAD；CatFACS 另分 EAD101–107。",
+          "sources": [
+            "catfacs"
+          ]
+        },
+        {
+          "id": "whiskers",
+          "name": "触须位移",
+          "en": "Whisker movement",
+          "structure": "触须垫及毛囊相关肌肉",
+          "mechanism": "示意触须的集体朝向变化。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "sensory",
+          "limit": "CatFACS 区分 AU200 后收、AU201 前伸、AU202 上抬；此合并通道不作正式编码。",
+          "sources": [
+            "catfacs"
+          ]
+        },
+        {
+          "id": "lip",
+          "name": "上唇提起",
+          "en": "Upper-lip movement",
+          "structure": "鼻唇及上唇相关表情肌群",
+          "mechanism": "局部软组织上移，改变上唇和吻部轮廓。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "soft-tissue",
+          "limit": "论文将鼻皱与上唇提起记为 AU109+110；当前形变未满足完整组合标准，不直接赋码。",
+          "sources": [
+            "catfacs"
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "id": "lid-close",
+          "name": "眼睑闭合",
+          "description": "观察眼睑形变；静态姿态本身不提供眨眼持续时间。",
+          "values": {
+            "jaw": 0,
+            "blink": 0.95,
+            "ears": 0,
+            "whiskers": 0,
+            "lip": 0
+          }
+        },
+        {
+          "id": "ear-whisker",
+          "name": "耳与触须",
+          "description": "组合检查耳廓和触须朝向。",
+          "values": {
+            "jaw": 0,
+            "blink": 0.1,
+            "ears": 0.75,
+            "whiskers": 0.8,
+            "lip": 0
+          }
+        },
+        {
+          "id": "lip-jaw",
+          "name": "唇与颌",
+          "description": "比较软组织提唇和骨骼开颌的区别。",
+          "values": {
+            "jaw": 0.65,
+            "blink": 0.1,
+            "ears": 0.2,
+            "whiskers": 0.3,
+            "lip": 0.75
+          }
+        }
+      ]
+    },
+    {
+      "id": "dog",
+      "name": "家犬",
+      "en": "Domestic dog",
+      "latin": "Canis lupus familiaris",
+      "level": 5,
+      "tag": "增加内眉控制",
+      "summary": "在此示意中增加内眉抬升，让眉部、眼睑与口部控制可以分开比较。",
+      "mechanism": "LAOM 参与内眉区域抬升；其存在并非家犬独有。犬的耳形、吻长和品种差异会影响可见运动。",
+      "limit": "六条通道不是犬的全部面肌或 DogFACS 动作数；犬放在猫之后只是当前模型的控制层次。",
+      "referenceIds": [
+        "dogfacs-study",
+        "dog-wolf",
+        "canid-2024",
+        "dog-whiskers",
+        "animalfacs"
+      ],
+      "channels": [
+        {
+          "id": "jaw",
+          "name": "下颌下降",
+          "en": "Jaw drop",
+          "structure": "下颌与非表情肌系统",
+          "mechanism": "下颌下降，齿间距离增加。",
+          "code": "AU26",
+          "codeSystem": "DogFACS",
+          "kind": "skeletal",
+          "limit": "AU26 指较放松的下颌下降；嘴大幅主动拉伸、唇分开与吐舌是其他动作。",
+          "sources": [
+            "dogfacs-study"
+          ]
+        },
+        {
+          "id": "blink",
+          "name": "眼睑闭合",
+          "en": "Blink / eye closure",
+          "structure": "眼轮匝肌等眼睑相关结构",
+          "mechanism": "上下眼睑接近并闭合。",
+          "code": "AU145",
+          "codeSystem": "DogFACS",
+          "kind": "soft-tissue",
+          "limit": "AU145 需短暂完整闭合；保持闭合或部分闭合不能仅凭此静态滑块赋码。",
+          "sources": [
+            "dogfacs-study",
+            "dog-wolf"
+          ]
+        },
+        {
+          "id": "ears",
+          "name": "耳廓转动",
+          "en": "Ear movement",
+          "structure": "耳廓肌群",
+          "mechanism": "示意耳廓姿态变化。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "soft-tissue",
+          "limit": "方向合并且耳形简化，不直接映射某个 EAD；真实犬耳差异很大。",
+          "sources": [
+            "dogfacs-study"
+          ]
+        },
+        {
+          "id": "whiskers",
+          "name": "触须位移",
+          "en": "Whisker movement",
+          "structure": "吻部触须的毛囊—窦复合体及相关横纹肌",
+          "mechanism": "示意吻部触须朝向变化；原始研究观察到触须向前探索。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "sensory",
+          "limit": "不声称狗像啮齿类一样进行同频率的节律扫须，也不套用 CatFACS 须码。",
+          "sources": [
+            "dog-whiskers"
+          ]
+        },
+        {
+          "id": "lip",
+          "name": "上唇提起",
+          "en": "Upper-lip movement",
+          "structure": "提上唇及鼻唇相关表情肌",
+          "mechanism": "上唇局部上移，改变犬齿区域的可见程度。",
+          "code": null,
+          "codeSystem": null,
+          "kind": "soft-tissue",
+          "limit": "简化形变不覆盖鼻皱与上唇提起的全部判据，也不把露齿直接标为攻击。",
+          "sources": [
+            "dogfacs-study",
+            "dog-wolf"
+          ]
+        },
+        {
+          "id": "brow",
+          "name": "内眉抬升",
+          "en": "Inner brow raiser",
+          "structure": "内侧眼角提肌 LAOM",
+          "mechanism": "眼上内侧区域向上、向中线方向抬起。",
+          "code": "AU101",
+          "codeSystem": "DogFACS",
+          "kind": "soft-tissue",
+          "limit": "AU101 描述动作，不等于乞求或悲伤；LAOM 在其他犬科也有报道。",
+          "sources": [
+            "dog-wolf",
+            "canid-2024",
+            "dogfacs-study"
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "id": "brow-rise",
+          "name": "内眉抬升",
+          "description": "隔离观察眉部通道。",
+          "values": {
+            "jaw": 0,
+            "blink": 0,
+            "brow": 0.9,
+            "ears": 0,
+            "whiskers": 0,
+            "lip": 0
+          }
+        },
+        {
+          "id": "ear-whisker",
+          "name": "耳与触须",
+          "description": "组合检查耳廓和触须通道。",
+          "values": {
+            "jaw": 0.1,
+            "blink": 0.1,
+            "brow": 0.1,
+            "ears": 0.75,
+            "whiskers": 0.8,
+            "lip": 0
+          }
+        },
+        {
+          "id": "lip-jaw",
+          "name": "唇与颌",
+          "description": "观察软组织与骨骼运动的叠加。",
+          "values": {
+            "jaw": 0.7,
+            "blink": 0.2,
+            "brow": 0.2,
+            "ears": 0.3,
+            "whiskers": 0.3,
+            "lip": 0.75
+          }
+        }
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "claim": "鱼、蛙和爬行动物是面部解剖最简单、几乎不能运动的低等动物。",
+      "correction": "不存在覆盖动物王国的统一“最简单面部”排名。少量皮肤表情动作不代表颅颌机构简单；本演示按控制概念组织，不按进化优劣排序。",
+      "sources": [
+        "fish-linkage",
+        "head-homology",
+        "facial-evolution"
+      ]
+    },
+    {
+      "claim": "非哺乳动物只有咬合动作，不能产生真正的交流展示。",
+      "correction": "安乐蜥通过喉扇等动作进行视觉展示。是否存在某种情绪，不能由是否具有人类式面部表情肌来判定。",
+      "sources": [
+        "anole-display",
+        "anole-dewlap",
+        "animalfacs"
+      ]
+    },
+    {
+      "claim": "鱼、蛙和爬行动物都由同一套颞肌、咬肌和单一面神经控制。",
+      "correction": "颌部、舌骨、眼部和浅表面肌应分开比较；命名、同源关系和神经支配随类群与结构不同，不能直接套用人类图谱。",
+      "sources": [
+        "head-homology",
+        "anole-cranial"
+      ]
+    },
+    {
+      "claim": "青蛙必须用眼球把食物推入食道。",
+      "correction": "豹蛙实验显示眼回缩辅助舌主导的吞咽；相关肌肉双侧去神经后仍可吞咽，只是每个猎物所需吞咽次数增加。",
+      "sources": [
+        "frog-eye"
+      ]
+    },
+    {
+      "claim": "LAOM 是家犬驯化后新出现、狼和其他野生犬科都没有的肌肉。",
+      "correction": "2019 年小样本犬狼比较发现差异；2024 年跨犬科解剖发现相关眼周肌并非家犬独有。不能把解剖差异直接写成已证实的驯化起源。",
+      "sources": [
+        "dog-wolf",
+        "canid-2024"
+      ]
+    },
+    {
+      "claim": "DogFACS 的 AU106 是露犬齿，AD19 是张嘴。",
+      "correction": "所核对的 DogFACS 表中，上唇提起为 AU110，常与 AU109 鼻皱组合；AU25 为唇分开，AU26 为下颌下降，AD19 为吐舌。",
+      "sources": [
+        "dogfacs-study"
+      ]
+    },
+    {
+      "claim": "CatFACS 用 EAU1、EAU4、WFU1 表示耳朵与胡须动作。",
+      "correction": "原始 CatFACS 表列耳部 EAD101–107；触须 AU200 后收、AU201 前伸、AU202 上抬。不同系统不能随意混用编号。",
+      "sources": [
+        "catfacs"
+      ]
+    },
+    {
+      "claim": "每一块肌肉都对应一个 AU，AU 组合可精确定义动物真实情感。",
+      "correction": "FACS 根据可见变化编码动作，可能涉及多个肌肉或非表情肌运动；情绪解释需要独立的情境、行为和实验验证，不能从动画预设直接推断。",
+      "sources": [
+        "animalfacs",
+        "catfacs",
+        "dogfacs-study"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123a38"><title>面部表情解剖实验室 · Facial Anatomy Lab</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="exploration.css"><link rel="stylesheet" href="workbench.css"><link rel="icon" href="data:,"></head>
+<body>
+<header class="topbar"><a class="brand" href="./"><span class="brand-icon">f.</span><span>FACIAL ANATOMY <b>LAB</b><small>面部表情解剖实验室</small></span></a><nav aria-label="工作区"><button class="nav active" data-mode="anatomy">解剖探索</button><button class="nav" data-mode="expression">表情实验</button><button class="nav" id="dof-open">动作空间</button><a class="nav" href="animals.html" style="text-decoration:none">动物动作比较</a><button class="nav" id="sources-open">开源与依据 <span>↗</span></button></nav><span class="local-badge"><i></i> 在线实验室</span></header>
+<main>
+<section class="intro"><div><div class="eyebrow">ANATOMY · MUSCLE COMPOSITION · SURFACE MOTION</div><h1>从肌束走向，到一起运动的表面。</h1><p>剥离层次，选择肌肉与动作模式，比较同一组驱动下的肌肉和表皮。</p></div><div class="intro-meta"><b id="muscle-total">—</b><span>肌肉组<br>可组合驱动</span><span class="divider"></span><b id="expression-total">—</b><span>书中表情<br>逐图核对方向</span></div></section>
+<section class="expression-picker" aria-label="按表情选择"><div class="expression-cards" id="expression-list"></div><p>点击表情开始协同动画。青绿色 = 本表情收缩肌群；蓝灰色 = 放松 / 被动随动；浅绿色 = 当前观察或多选的肌肉。</p></section>
+<section class="workspace" aria-label="面部解剖交互工作区">
+<aside class="panel left-panel">
+<div class="panel-title"><h2>组织层次</h2><span class="index-label">01</span></div>
+<div class="dissection-controls"><label>肌肉层次<select id="muscle-depth"><option value="all">全部肌肉</option><option value="superficial">浅层肌肉</option><option value="deep">深层肌肉</option><option value="neck">颈部范围</option></select></label><label class="fiber-option"><input id="show-fibers" type="checkbox" checked> 显示肌束走向</label><small>贴面走向为解剖示意，非实测纤维场。</small></div>
+<div class="layers">
+<label class="layer-row"><span class="layer-dot skin"></span><span>皮肤示意表面<small>观察外部表情</small></span><input id="layer-skin" type="checkbox" aria-label="显示皮肤层"></label>
+<label class="opacity-control" for="skin-opacity">表面不透明度 <output id="skin-opacity-value">35%</output><input id="skin-opacity" type="range" min="0.1" max="1" step="0.05" value="0.35"></label>
+<label class="layer-row"><span class="layer-dot muscles"></span><span>面部与颈部肌肉<small>点击选择 · 独立控制</small></span><input id="layer-muscles" type="checkbox" checked aria-label="显示肌肉层"></label>
+<label class="layer-row"><span class="layer-dot bones"></span><span>颅骨与颈椎<small>骨性附着参考</small></span><input id="layer-bones" type="checkbox" checked aria-label="显示骨骼层"></label>
+</div>
+<div class="panel-title muscle-heading"><h2>肌肉目录 · 勾选可组合</h2><span id="visible-count" class="count">—</span></div>
+<label class="searchbox"><span>⌕</span><input id="search-muscle" type="search" placeholder="搜索中文 / English" aria-label="搜索肌肉"></label>
+<div class="region-filters" aria-label="按区域筛选"><button class="chip active" data-region="all">全部</button><button class="chip" data-region="upper">额眼</button><button class="chip" data-region="mid">鼻颊</button><button class="chip" data-region="lower">口颏</button><button class="chip" data-region="neck">颈颌</button></div>
+<div id="muscle-list" class="muscle-list" aria-label="可选择的肌肉"></div>
+<button id="restore-visible" class="text-button">↺ 恢复全部肌肉显示</button>
+</aside>
+<section class="stage" aria-label="三维模型">
+<div class="stage-heading"><div><span class="tiny-label">3D ANATOMICAL VIEW</span><h2 id="stage-title">面颈部 · 分层解剖</h2></div><span class="stage-tag" id="model-status">载入模型中…</span></div>
+<div class="stage-study"><span id="stage-study-label">静息参考</span><button id="stage-play" class="primary">▶ 播放表情</button><output id="stage-progress">0%</output><div class="stage-progress-track"><i id="stage-progress-fill"></i></div><span id="stage-phase">静息</span></div>
+<div class="stage-display" aria-label="显示范围"><button data-display="context" class="active">完整解剖</button><button data-display="muscles">只看这组肌肉</button><button data-display="overlay">肌群 + 表皮</button><button data-display="surface">只看表皮</button></div>
+<div id="viewer" role="img" aria-label="可旋转的头骨、面部肌肉和颈部肌肉三维模型"></div>
+<div id="loading" class="loading"><span class="spinner"></span><b>正在装配解剖模型</b><span>加载网站网格与肌肉数据</span></div>
+<div class="view-buttons" aria-label="视角"><button data-view="face">面部特写</button><button data-view="front" class="active">正面</button><button data-view="left">左侧</button><button data-view="right">右侧</button><button data-view="neck">颈部</button><button data-view="back">后面</button><button data-view="reset" title="恢复初始视角">↺</button></div>
+<div class="stage-footer"><span><i class="legend-dot teal"></i> 协同收缩 <i class="legend-dot relaxed"></i> 放松 / 随动 <i class="legend-dot selected"></i> 当前观察</span><span>静息线框 · 顶点位移箭头 ×<b id="arrow-scale-label">3</b></span></div>
+<div class="model-note">开放解剖网格 + 示意形变 · 未经个体标定</div>
+</section>
+<aside class="panel detail-panel">
+<div class="panel-title"><h2>肌肉观察</h2><span class="index-label">02</span></div>
+<div id="selected-region" class="eyebrow detail-region">面部肌肉</div><h2 id="selected-name" class="selected-name">选择一组肌肉</h2><p id="selected-en" class="selected-en">Select a muscle to explore</p>
+<div id="geometry-badge" class="geometry-badge">模型与书中名称对应</div>
+<div id="individual-modes" class="individual-modes"></div>
+<div id="member-context" class="member-context"><b>当前表情中的动作</b><p id="member-action">选择表情，查看该肌肉在其中的作用。</p><small id="member-part"></small><output id="member-motion"></output><div id="member-regions" class="member-regions"></div></div>
+<div class="selection-actions"><button id="isolate" class="secondary">单独显示</button><button id="hide-muscle" class="secondary">隐藏</button></div>
+<div class="control-section"><div class="label-line"><label for="activation">动画激活</label><output id="activation-value">0%</output></div><input id="activation" type="range" min="0" max="1" step="0.01" value="0"><div class="range-labels"><span>静息</span><span>收缩</span></div><div class="side-control" aria-label="激活侧"><button data-side="both" class="active">双侧</button><button data-side="left">左侧</button><button data-side="right">右侧</button></div><div class="selection-actions"><button id="pulse-muscle" class="primary">▶ 收缩 / 放松</button><button id="relax-muscle" class="secondary">放松</button></div></div>
+<dl class="anatomy-facts"><dt>分布 <span>LOCATION</span></dt><dd id="selected-distribution">—</dd><dt>起点 <span>ORIGIN</span></dt><dd id="selected-origin">—</dd><dt>止点 <span>INSERTION</span></dt><dd id="selected-insertion">—</dd><dt>动作 <span>ACTION</span></dt><dd id="selected-action">—</dd></dl>
+<div class="book-source"><span>书中依据</span><span id="book-link">公开版保留页码引用</span><p id="selected-pages"></p></div>
+<div class="detail-footnote">滑块表示动画激活参数；数值用于演示，不是书中测量的肌肉力或生理收缩率。左右均按模型本人的方向。</div>
+</aside>
+</section>
+<section class="combination-section" id="combination-section"><div class="section-heading"><div><div class="eyebrow">FREE MUSCLE COMPOSITION</div><h2>任意肌肉，一起运动</h2></div><label class="multi-pick"><input type="checkbox" id="multi-pick"> 在模型上连续点选 / 取消</label></div><div class="combination-toolbar"><button id="combine-current" class="secondary">从当前表情建立组合</button><button id="combine-focused" class="secondary">＋ 加入当前肌肉</button><button id="combine-play" class="primary">▶ 播放组合</button><button id="combine-clear" class="text-button">清空组合</button><span id="combination-status">在左侧勾选肌肉，或从表情开始。</span></div><div id="combination-list" class="combination-list"></div><div class="combination-footer"><label>组合强度 <output id="combination-intensity-value">0%</output><input id="combination-intensity" type="range" min="0" max="1" step="0.01" value="0"></label><label>独立下颌开合 <output id="combination-jaw-value">0%</output><input id="combination-jaw" type="range" min="0" max="1" step="0.01" value="0"></label><p>允许任意共激活；各行可选动作、侧别与幅值。当前显示运动学叠加，不强制生理互斥，也不计算接触与组织阻力。</p></div></section>
+<section class="surface-explanation"><div><div class="eyebrow">ONE DRIVER · TWO REPRESENTATIONS</div><h3>同一姿态，比较肌肉和表面</h3><p id="surface-binding-status">皮肤通过固定局部对应关系跟随肌肉位移；透明度只控制显示。</p><p>皮肤形态与连接权重仍为示意。对应一致不等于已重建真实人体：组织滑移、接触、材料和个体差异需要进一步标定。</p></div><div><b>比较方法</b><p>暂停在某个强度 → 切换“只看这组肌肉 / 肌群 + 表皮 / 只看表皮”。切换时保留全部驱动参数。</p><button id="binding-audit" class="secondary">检查当前对应关系</button><output id="binding-audit-result"></output></div></section>
+<section class="expression-section"><div class="section-heading"><div><div class="eyebrow">COORDINATED MUSCLE ACTIONS</div><h2>整组协同与组内拆解</h2></div><span id="expression-caption">保留当前表情的动作分部与方向</span></div>
+<div class="study-toolbar"><div class="study-modes" aria-label="表情研究方式"><button data-study-mode="ensemble" class="active">整组协同</button><button data-study-mode="solo">本表情 · 单肌肉</button><button data-study-mode="context">其余保持 · 只动选中</button></div><div class="analysis-options"><label><input id="show-ghost" type="checkbox"> 静息线框</label><label><input id="show-arrows" type="checkbox"> 位移箭头</label><label>箭头 <select id="arrow-gain"><option value="1">×1</option><option value="3" selected>×3</option><option value="5">×5</option></select></label></div></div><p id="study-explanation" class="study-explanation">整组肌肉按各自参考强度同步变化；数值暂为可编辑的示意设定。</p>
+<div class="animation-panel"><div class="animation-info"><span class="tiny-label">CURRENT STUDY</span><h3 id="expression-name">中性 · Neutral</h3><p id="expression-description">所有肌肉处于静息状态。</p></div><div class="playback"><div class="playback-top"><button id="play-expression" class="primary">▶ 播放表情</button><button id="reset-all" class="secondary">复位</button><label class="loop-label"><input id="loop" type="checkbox" checked> 循环</label><label class="speed-label">速度 <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select></label><button id="export-pose" class="text-button" title="导出当前肌肉激活参数">导出参数 ↓</button></div><div class="timeline-label"><label for="expression-intensity">表情强度</label><output id="intensity-value">0%</output></div><input id="expression-intensity" type="range" min="0" max="1" step="0.01" value="0"><div class="range-labels"><span>静息</span><span>表情峰值</span></div></div><div class="active-muscles"><div class="tiny-label">参与肌群 <span id="active-count">0</span></div><div id="active-muscle-tags"><span class="empty-note">选择表情后显示</span></div></div></div>
+<div class="expression-evidence"><span id="expression-evidence"></span></div>
+<div id="cooperation-table" class="cooperation-table"></div>
+</section>
+<section id="action-space" class="action-space"><div class="section-heading"><div><div class="eyebrow">MUSCLE × EXPRESSION → CANDIDATE CHANNELS</div><h2>从单块肌肉看动作空间</h2></div><label class="dof-muscle-label">观察肌肉 <select id="dof-muscle"></select></label></div><div id="dof-principles" class="dof-principles"></div><div class="dof-layout"><div id="dof-detail" class="dof-detail"></div><div class="matrix-panel"><div class="matrix-caption">跨表情动作矩阵 <span>点单元格，演示该肌肉在对应表情中的动作</span></div><div id="dof-matrix" class="dof-matrix"></div></div></div><div id="dof-boundary" class="dof-boundary"></div></section>
+<section id="neck-coverage" class="neck-coverage"><div class="section-heading"><div><div class="eyebrow">NECK COVERAGE & COACTIVATION</div><h2>颈部覆盖与组合观察</h2></div><div class="neck-shortcuts"><button data-neck-demo="platysma" class="secondary">颈阔肌</button><button data-neck-demo="sternocleidomastoid" class="secondary">胸锁乳突肌</button><button id="neck-fear" class="secondary">恐惧中的颈阔肌</button></div></div><div id="neck-coverage-content"></div><div class="research-note"><b>任意组合怎样理解？</b><p>拮抗肌可以同时激活；它们可能增加刚度、稳定位置，也可能产生运动抵消。面部肌肉通过皮肤、筋膜和口角连接，唇/睑接触及下颌姿态让合成结果依赖状态，不能将“能同时激活”理解为“单肌形变能精确线性相加”。</p><a href="methods.html#limits" target="_blank">模型范围与组合说明 ↗</a></div></section>
+<footer><span>FACIAL ANATOMY LAB <b> / </b> 解剖关系可追溯，动画参数可编辑。</span><button class="text-button" id="methods-open">模型来源与方法说明 ↗</button></footer>
+</main>
+<dialog id="sources-dialog"><div class="dialog-head"><div><div class="eyebrow">SOURCES & METHODS</div><h2>开源组件与复刻依据</h2></div><button data-close="sources-dialog" class="close-button" aria-label="关闭来源窗口">×</button></div><div id="sources-content"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="vendor/three.min.js"></script><script src="skin-binding.js"></script><script src="viewer.js"></script><script src="muscle-display.js"></script><script src="exploration.js"></script><script src="workbench.js"></script><script src="app.js"></script>
+</body></html>

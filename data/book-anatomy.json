@@ -1,0 +1,2371 @@
+{
+  "schemaVersion": 2,
+  "title": "面部与颈部肌肉 / 书中表情核对",
+  "checkedDate": "2026-10-17",
+  "pageNumbering": "bookPages are 1-based PDF page numbers; printedPages are the printed folios.",
+  "activationNotice": "所有 0..1 激活值、jawOpen 与时序均为可编辑动画启发式参数，不是书中实测值、EMG、FACS 强度换算或生物力学仿真。",
+  "scope": "29 个表情、咀嚼与颈部肌群条目。六条眼外肌的凝视运动、耳肌、舌/舌骨上下肌群未作为独立动画控件；本表不声称是完整头颈解剖。",
+  "coordinateNotice": "left/right refer to the model’s anatomical left/right, not screen sides.",
+  "muscles": [
+    {
+      "id": "frontalis",
+      "nameZh": "额肌（枕额肌额腹）",
+      "nameEn": "Frontalis",
+      "region": "额部",
+      "origin": "帽状腱膜",
+      "insertion": "眉部和鼻根皮肤，与邻近表情肌纤维交织",
+      "action": "上提眉毛；内侧纤维对应 AU1，外侧纤维对应 AU2；额部形成横纹",
+      "bookPages": [
+        54,
+        55
+      ],
+      "printedPages": [
+        52,
+        53
+      ],
+      "distribution": "额部左右薄片，纤维大体纵向；不是从额骨直接起始。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "medial",
+        "lateral"
+      ],
+      "aus": [
+        1,
+        2
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "occipitalis",
+      "nameZh": "枕肌（枕额肌枕腹）",
+      "nameEn": "Occipitalis",
+      "region": "额部",
+      "origin": "上项线外侧部及乳突附近",
+      "insertion": "帽状腱膜",
+      "action": "向后牵拉头皮，与额腹通过帽状腱膜相连",
+      "bookPages": [
+        54
+      ],
+      "printedPages": [
+        52
+      ],
+      "distribution": "后枕部左右短肌腹；顶部是腱膜，不应绘成整片收缩肌。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "corrugator_supercilii",
+      "nameZh": "皱眉肌",
+      "nameEn": "Corrugator supercilii",
+      "region": "眉间",
+      "origin": "额骨眉弓内侧",
+      "insertion": "眉部皮肤，与额肌、眼轮匝肌交织",
+      "action": "使眉部向内并向下聚拢，参与 AU4；局部运动取决于纤维与邻肌协同",
+      "bookPages": [
+        56,
+        57
+      ],
+      "printedPages": [
+        54,
+        55
+      ],
+      "distribution": "眉内侧深层起始，向外上穿入眉部皮肤；不能等同额肌的抬眉动作。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        4
+      ],
+      "sources": [
+        "corrugator-study",
+        "upper-face-study"
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "procerus",
+      "nameZh": "降眉间肌（鼻根肌）",
+      "nameEn": "Procerus",
+      "region": "眉间",
+      "origin": "鼻骨及鼻软骨表面筋膜",
+      "insertion": "眉间下部皮肤，与额肌交织",
+      "action": "下拉眉间皮肤，形成鼻根横纹，参与 AU4",
+      "bookPages": [
+        56,
+        57
+      ],
+      "printedPages": [
+        54,
+        55
+      ],
+      "distribution": "鼻梁上方正中短纵向肌片；不要与横向鼻肌混淆。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        4
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "depressor_supercilii",
+      "nameZh": "降眉肌",
+      "nameEn": "Depressor supercilii",
+      "region": "眉间",
+      "origin": "上颌骨额突、内眦上方附近（书中笼统写鼻梁外侧）",
+      "insertion": "眉内侧皮肤",
+      "action": "牵引内侧眉部向下，参与 AU4",
+      "bookPages": [
+        56,
+        57
+      ],
+      "printedPages": [
+        54,
+        55
+      ],
+      "distribution": "内眦上方的小肌束；与眼轮匝肌、皱眉肌边界和命名存在解剖学差异。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        4
+      ],
+      "sources": [
+        "depressor-supercilii-study"
+      ],
+      "evidenceDetail": "起点按尸体解剖研究细化，书图仅提供概略分布。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "orbicularis_oculi",
+      "nameZh": "眼轮匝肌",
+      "nameEn": "Orbicularis oculi",
+      "region": "眶区",
+      "origin": "内侧眶缘及内眦韧带等附着区",
+      "insertion": "眼睑皮肤、外侧睑缝与周围软组织",
+      "action": "眶部提颊并缩小眼裂（AU6）；睑部收紧/闭合眼睑（AU7、眨眼）；泪部参与泪液泵作用",
+      "bookPages": [
+        60,
+        61,
+        62,
+        63
+      ],
+      "printedPages": [
+        58,
+        59,
+        60,
+        61
+      ],
+      "distribution": "围绕眼眶与眼睑的薄环状肌；不同部分不能用一个闭眼量完全替代。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "orbital",
+        "palpebral",
+        "lacrimal"
+      ],
+      "aus": [
+        6,
+        7,
+        43
+      ],
+      "caution": "PDF61/62 的 Upper Lid Raiser 标题误写；眼轮匝肌不是主要睁眼肌。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "levator_palpebrae_superioris",
+      "nameZh": "上睑提肌",
+      "nameEn": "Levator palpebrae superioris",
+      "region": "眶区",
+      "origin": "眶尖附近蝶骨小翼",
+      "insertion": "经腱膜连至上睑板和上睑组织",
+      "action": "上提上眼睑，参与 AU5",
+      "bookPages": [
+        58,
+        59,
+        64,
+        65
+      ],
+      "printedPages": [
+        56,
+        57,
+        62,
+        63
+      ],
+      "distribution": "位于眶内上直肌之上，从眶后方向前；不是贴在眉毛上的表面肌片。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        5
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "superior_tarsal",
+      "nameZh": "上睑板肌（Müller 肌）",
+      "nameEn": "Superior tarsal muscle",
+      "region": "眶区",
+      "origin": "上睑提肌下表面",
+      "insertion": "上睑板上缘",
+      "action": "辅助维持与提升上眼睑；与上睑提肌共同影响睑裂",
+      "bookPages": [
+        58,
+        59
+      ],
+      "printedPages": [
+        56,
+        57
+      ],
+      "distribution": "上睑深面的短薄平滑肌，位于上睑提肌与睑板之间。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        5
+      ],
+      "muscleType": "smooth",
+      "sources": [
+        "tarsal-study"
+      ],
+      "caution": "平滑肌，不能把交互滑块解释为可独立随意控制的骨骼肌激活。"
+    },
+    {
+      "id": "nasalis",
+      "nameZh": "鼻肌",
+      "nameEn": "Nasalis",
+      "region": "鼻区",
+      "origin": "上颌骨切牙窝外上方及鼻翼旁",
+      "insertion": "横部至鼻背腱膜；翼部至鼻翼软骨/鼻翼组织",
+      "action": "翼部扩张鼻孔（AU38），横部压缩鼻孔（AU39）；两部分作用不同",
+      "bookPages": [
+        76,
+        77,
+        80,
+        81,
+        82,
+        83
+      ],
+      "printedPages": [
+        74,
+        75,
+        78,
+        79,
+        80,
+        81
+      ],
+      "distribution": "鼻背横向薄片与鼻翼下方的小肌束须区分。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "alar",
+        "transverse"
+      ],
+      "aus": [
+        38,
+        39
+      ],
+      "caution": "PDF80/82 表格起止标签与正文次序矛盾；此处按正文及解剖分部整理。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "dilator_naris",
+      "nameZh": "鼻孔扩张肌前部",
+      "nameEn": "Dilator naris anterior",
+      "region": "鼻区",
+      "origin": "大鼻翼软骨外侧脚表面",
+      "insertion": "鼻孔边缘皮肤",
+      "action": "扩张鼻孔，参与 AU38",
+      "bookPages": [
+        76,
+        77,
+        80,
+        81
+      ],
+      "printedPages": [
+        74,
+        75,
+        78,
+        79
+      ],
+      "distribution": "鼻翼缘浅层小肌束，不应覆盖整片鼻侧壁。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        38
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "depressor_septi_nasi",
+      "nameZh": "降鼻中隔肌",
+      "nameEn": "Depressor septi nasi",
+      "region": "鼻区",
+      "origin": "上颌骨门齿窝与口轮匝肌相关纤维（存在变异）",
+      "insertion": "鼻小柱、膜性鼻中隔及内侧脚附近软组织",
+      "action": "向下牵引鼻尖/鼻中隔，影响上唇与鼻孔形状；书中列入 AU38",
+      "bookPages": [
+        76,
+        77,
+        80,
+        81
+      ],
+      "printedPages": [
+        74,
+        75,
+        78,
+        79
+      ],
+      "distribution": "鼻基底中部小肌束，附着与纤维分群有明显个体差异。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        38
+      ],
+      "sources": [
+        "nasal-airflow-study",
+        "nasal-variation-study"
+      ],
+      "caution": "书中同页称其收缩鼻孔又列入扩鼻孔组合，不能据此统一设为纯扩张器或纯压缩器。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "compressor_naris",
+      "nameZh": "鼻孔压肌",
+      "nameEn": "Compressor narium minor",
+      "region": "鼻区",
+      "origin": "鼻翼软骨前部/外侧脚附近",
+      "insertion": "鼻孔缘附近皮肤",
+      "action": "减小鼻孔开口，参与 AU39",
+      "bookPages": [
+        76,
+        77,
+        82,
+        83
+      ],
+      "printedPages": [
+        74,
+        75,
+        80,
+        81
+      ],
+      "distribution": "鼻翼局部很小的肌束，可能缺如；与鼻肌横部分开命名。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        39
+      ],
+      "caution": "ID compressor_naris 在此专指书中的 compressor narium minor，避免与 nasalis 横部别名混淆。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "levator_labii_superioris_alaeque_nasi",
+      "nameZh": "提上唇鼻翼肌",
+      "nameEn": "Levator labii superioris alaeque nasi",
+      "region": "鼻区",
+      "origin": "上颌骨额突上部",
+      "insertion": "鼻翼软骨/皮肤及上唇",
+      "action": "上提鼻翼与上唇，皱鼻（AU9）",
+      "bookPages": [
+        78,
+        79
+      ],
+      "printedPages": [
+        76,
+        77
+      ],
+      "distribution": "紧邻鼻侧的细长肌，远端分鼻翼支和上唇支。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        9
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "levator_labii_superioris",
+      "nameZh": "提上唇肌",
+      "nameEn": "Levator labii superioris",
+      "region": "口颊区",
+      "origin": "上颌骨眶下缘",
+      "insertion": "上唇中外侧皮肤及肌层",
+      "action": "上提并外翻上唇（AU10）",
+      "bookPages": [
+        112,
+        113
+      ],
+      "printedPages": [
+        110,
+        111
+      ],
+      "distribution": "从眶下缘向下呈宽薄片，位于提上唇鼻翼肌与颧小肌之间。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        10
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "zygomaticus_minor",
+      "nameZh": "颧小肌",
+      "nameEn": "Zygomaticus minor",
+      "region": "口颊区",
+      "origin": "颧骨前面",
+      "insertion": "上唇外侧、鼻唇沟与邻近软组织",
+      "action": "上提上唇并加深鼻唇沟（AU11）",
+      "bookPages": [
+        106,
+        107
+      ],
+      "printedPages": [
+        104,
+        105
+      ],
+      "distribution": "颧大肌内上方较细斜束，止于上唇而非直接作为主要口角上提肌。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        11
+      ],
+      "caution": "PDF106 英文页标题误写 ZYGOMATICUS MAJOR；正文、中文标题和 AU11 对应 minor。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "zygomaticus_major",
+      "nameZh": "颧大肌",
+      "nameEn": "Zygomaticus major",
+      "region": "口颊区",
+      "origin": "颧骨外侧",
+      "insertion": "口角肌结（modiolus）",
+      "action": "将口角向上、向外及向后牵拉，形成微笑口角（AU12）",
+      "bookPages": [
+        104,
+        105
+      ],
+      "printedPages": [
+        102,
+        103
+      ],
+      "distribution": "从颧骨斜向内下延至口角，通常比颧小肌更外侧。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        12
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "levator_anguli_oris",
+      "nameZh": "提口角肌",
+      "nameEn": "Levator anguli oris",
+      "region": "口颊区",
+      "origin": "上颌骨犬齿窝",
+      "insertion": "口角肌结，与口轮匝肌等交织",
+      "action": "向上牵引口角并稳定口角肌结，书中对应 AU13",
+      "bookPages": [
+        110,
+        111
+      ],
+      "printedPages": [
+        108,
+        109
+      ],
+      "distribution": "位于提上唇肌深面，从犬齿窝向口角下降的短宽肌束。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        13
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "risorius",
+      "nameZh": "笑肌",
+      "nameEn": "Risorius",
+      "region": "口颊区",
+      "origin": "腮腺及咬肌表面的筋膜",
+      "insertion": "口角肌结与口角皮肤",
+      "action": "横向向外牵引口角，参与 AU20；不是典型微笑的主要上提肌",
+      "bookPages": [
+        114,
+        115
+      ],
+      "printedPages": [
+        112,
+        113
+      ],
+      "distribution": "外侧面颊向口角的细横束，位于颈阔肌浅面；大小、形状可变。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        20
+      ],
+      "caution": "书中笑肌页保留误贴颊肌段落的编辑说明，不能把颊肌起点移植给笑肌。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "buccinator",
+      "nameZh": "颊肌",
+      "nameEn": "Buccinator",
+      "region": "口颊区",
+      "origin": "上下颌磨牙区牙槽突与翼下颌缝",
+      "insertion": "口角及口轮匝肌深层",
+      "action": "将颊部压向牙列，收紧口角，参与吹气和咀嚼辅助；书中对应 AU14",
+      "bookPages": [
+        87,
+        96,
+        97
+      ],
+      "printedPages": [
+        85,
+        94,
+        95
+      ],
+      "distribution": "构成口腔侧壁的深层宽片；位于咬肌前方且在脂肪层深面。",
+      "layer": "deep",
+      "evidence": "book-paraphrase",
+      "aus": [
+        14
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "orbicularis_oris",
+      "nameZh": "口轮匝肌",
+      "nameEn": "Orbicularis oris",
+      "region": "口颊区",
+      "origin": "口角肌结及邻近唇肌交织，部分深纤维连接上下颌",
+      "insertion": "上下唇皮肤与黏膜相关组织",
+      "action": "闭唇、收紧、前突与聚拢双唇；AU18 噘嘴、AU22 漏斗唇、AU23 紧唇需要不同变形",
+      "bookPages": [
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95
+      ],
+      "printedPages": [
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93
+      ],
+      "distribution": "围口的多层交织肌束；不是形状固定、各处统一缩放的单一圆环。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "marginal",
+        "peripheral",
+        "incisivus_superior",
+        "incisivus_inferior"
+      ],
+      "aus": [
+        18,
+        22,
+        23
+      ],
+      "caution": "AU23 紧唇可使唇红变窄而口宽不明显缩短；不能复用 AU18 噘嘴形变。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "depressor_anguli_oris",
+      "nameZh": "降口角肌",
+      "nameEn": "Depressor anguli oris",
+      "region": "下唇下颏",
+      "origin": "下颌骨外侧斜线附近",
+      "insertion": "口角肌结",
+      "action": "使口角向下并略向外，参与 AU15",
+      "bookPages": [
+        102,
+        103
+      ],
+      "printedPages": [
+        100,
+        101
+      ],
+      "distribution": "下颌骨向口角收窄的三角薄片，位于降下唇肌外侧。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        15
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "depressor_labii_inferioris",
+      "nameZh": "降下唇肌",
+      "nameEn": "Depressor labii inferioris",
+      "region": "下唇下颏",
+      "origin": "下颌骨斜线，位于降口角肌起点上方",
+      "insertion": "下唇皮肤及口轮匝肌",
+      "action": "下拉并外翻下唇（AU16），可帮助双唇分离（AU25）",
+      "bookPages": [
+        108,
+        109
+      ],
+      "printedPages": [
+        106,
+        107
+      ],
+      "distribution": "下唇下方的左右薄片，内侧于降口角肌；不能用它直接旋转下颌骨。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        16,
+        25
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "mentalis",
+      "nameZh": "颏肌",
+      "nameEn": "Mentalis",
+      "region": "下唇下颏",
+      "origin": "下颌骨前面切牙下方",
+      "insertion": "颏部皮肤与软组织",
+      "action": "提升颏部皮肤和下唇中部，形成颏纹并协助噘嘴（AU17）",
+      "bookPages": [
+        87,
+        89,
+        90,
+        100,
+        101
+      ],
+      "printedPages": [
+        85,
+        87,
+        88,
+        98,
+        99
+      ],
+      "distribution": "下唇中央下方的成对小肌腹；主要牵引软组织而非抬起整块下颌骨。",
+      "layer": "superficial",
+      "evidence": "book-paraphrase",
+      "aus": [
+        17,
+        18,
+        23
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "platysma",
+      "nameZh": "颈阔肌",
+      "nameEn": "Platysma",
+      "region": "颈部",
+      "origin": "胸大肌与三角肌上方的浅筋膜",
+      "insertion": "下颌缘、下唇和口角相关组织",
+      "action": "绷紧颈部皮肤，向下/外牵引下唇与口角，参与 AU20/25",
+      "bookPages": [
+        116,
+        117
+      ],
+      "printedPages": [
+        114,
+        115
+      ],
+      "distribution": "覆盖前外侧颈部的宽薄浅层肌片，跨越下颌缘接入面部；不是两根粗绳。",
+      "layer": "neck",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "mandibular",
+        "labial",
+        "modiolar"
+      ],
+      "aus": [
+        20,
+        21,
+        25
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "masseter",
+      "nameZh": "咬肌",
+      "nameEn": "Masseter",
+      "region": "咀嚼区",
+      "origin": "颧弓与颧骨",
+      "insertion": "下颌支及下颌角外侧",
+      "action": "上提下颌、闭口和咬紧（AU31）；张口时通常降低其激活",
+      "bookPages": [
+        118,
+        119,
+        122,
+        123
+      ],
+      "printedPages": [
+        116,
+        117,
+        120,
+        121
+      ],
+      "distribution": "下颌支外侧厚肌，有浅深分层；不跨越嘴角。",
+      "layer": "mastication",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "superficial",
+        "deep"
+      ],
+      "aus": [
+        31
+      ],
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "temporalis",
+      "nameZh": "颞肌",
+      "nameEn": "Temporalis",
+      "region": "咀嚼区",
+      "origin": "颞窝及颞筋膜",
+      "insertion": "下颌骨冠突与下颌支前缘",
+      "action": "上提下颌，后束协助后缩下颌",
+      "bookPages": [
+        118,
+        119,
+        120,
+        121
+      ],
+      "printedPages": [
+        116,
+        117,
+        118,
+        119
+      ],
+      "distribution": "颅侧颞窝扇形肌，肌腱经过颧弓深面到冠突。",
+      "layer": "mastication",
+      "evidence": "book-paraphrase",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "medial_pterygoid",
+      "nameZh": "翼内肌",
+      "nameEn": "Medial pterygoid",
+      "region": "咀嚼区",
+      "origin": "翼突外侧板内面；浅头来自上颌结节和腭骨锥突",
+      "insertion": "下颌支和下颌角内侧",
+      "action": "上提下颌；协助前伸及侧向运动",
+      "bookPages": [
+        118,
+        119,
+        124,
+        125
+      ],
+      "printedPages": [
+        116,
+        117,
+        122,
+        123
+      ],
+      "distribution": "下颌角内侧，与外侧咬肌共同构成肌性吊带。",
+      "layer": "mastication",
+      "evidence": "book-paraphrase",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "lateral_pterygoid",
+      "nameZh": "翼外肌",
+      "nameEn": "Lateral pterygoid",
+      "region": "咀嚼区",
+      "origin": "蝶骨颞下面及翼突外侧板外面",
+      "insertion": "髁突颈翼肌凹；部分纤维连关节囊/关节盘",
+      "action": "下头协助髁突前移和张口；上头参与盘-髁稳定，不能把两头都当作纯张口驱动",
+      "bookPages": [
+        118,
+        119,
+        126,
+        127
+      ],
+      "printedPages": [
+        116,
+        117,
+        124,
+        125
+      ],
+      "distribution": "颧弓深面的短横向肌，从蝶骨区通向下颌髁突附近。",
+      "layer": "mastication",
+      "evidence": "book-paraphrase",
+      "parts": [
+        "superior",
+        "inferior"
+      ],
+      "aus": [
+        26
+      ],
+      "sources": [
+        "pterygoid-emg-study",
+        "jaw-opening-emg-study"
+      ],
+      "caution": "PDF126/127 英文标题误写 MEDIAL PTERYGOID；真实张口还包含舌骨上肌群、关节旋转/平移与被动作用。",
+      "muscleType": "skeletal"
+    },
+    {
+      "id": "sternocleidomastoid",
+      "nameZh": "胸锁乳突肌",
+      "nameEn": "Sternocleidomastoid",
+      "region": "颈部",
+      "origin": "胸骨柄与锁骨内侧段",
+      "insertion": "颞骨乳突及上项线外侧",
+      "action": "单侧收缩使头向同侧侧屈、向对侧旋转；双侧活动取决于颈部姿态",
+      "bookPages": [],
+      "printedPages": [],
+      "distribution": "从耳后乳突斜行至胸骨与锁骨，位于颈阔肌深面；用于颈部结构演示，不加入情绪配方。",
+      "layer": "neck",
+      "evidence": "book-paraphrase",
+      "sources": [
+        "openstax-head-neck"
+      ],
+      "evidenceDetail": "为颈部结构演示补充，起止与动作由外部教学解剖来源支持；未作为该书独立章节确认。",
+      "muscleType": "skeletal"
+    }
+  ],
+  "expressions": [
+    {
+      "id": "neutral",
+      "nameZh": "放松",
+      "nameEn": "Neutral",
+      "aus": [
+        0
+      ],
+      "bookPages": [],
+      "printedPages": [],
+      "description": "用于交互复位的参考中性姿态；零值不是生理零张力。",
+      "activations": {},
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "actions": [],
+      "note": "中性仅作动画参考；不将所有肌肉的零控制值标成书证支持的完全放松。"
+    },
+    {
+      "id": "smile",
+      "nameZh": "微笑",
+      "nameEn": "Smile",
+      "aus": [
+        6,
+        12,
+        25
+      ],
+      "bookPages": [
+        138,
+        139
+      ],
+      "printedPages": [
+        136,
+        137
+      ],
+      "description": "颧大肌提口角，眼轮匝肌眶部提颊；书中示例为露齿微笑。",
+      "activations": {
+        "zygomaticus_major": 0.9,
+        "orbicularis_oculi": 0.55,
+        "depressor_labii_inferioris": 0.25
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "parts": {
+        "orbicularis_oculi": "orbital"
+      },
+      "note": "PDF139 列出口轮匝肌但未标明其主动收缩或放松；删除原来无证据的 0.1 正激活，仅记录随口角提拉和唇分开的被动唇形变化。passive 是保守的可视化处理，不是书中明确的放松结论。该页局部 AU5 小标签与章节 AU6+12+25 冲突，按正文及眶部动作采用 AU6。",
+      "actions": [
+        {
+          "muscleId": "zygomaticus_major",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "口角沿颧骨方向向上、向外及向后牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            139,
+            104,
+            105
+          ],
+          "evidence": "PDF139 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF104,105 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "orbicularis_oculi",
+          "part": "orbital",
+          "kind": "contract",
+          "directionZh": "眶部收缩使下方颊皮肤向上、眶上方皮肤向眼裂方向下移，眼裂变窄；不是整块眼眶统一下移。",
+          "mode": "orbital",
+          "bookPages": [
+            139,
+            60,
+            61,
+            62
+          ],
+          "evidence": "PDF139 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF60,61,62 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "本预设明确使用眶部 AU6；没有据此额外添加睑部 AU7 主动闭眼。"
+        },
+        {
+          "muscleId": "depressor_labii_inferioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "下唇向下、稍向外牵引并外翻，帮助双唇分开；不以此旋转下颌骨。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            139,
+            108,
+            109
+          ],
+          "evidence": "PDF139 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF108,109 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "orbicularis_oris",
+          "part": "unspecified",
+          "kind": "passive",
+          "directionZh": "唇组织随口角上外提拉和下唇下降改变形状；不添加无依据的聚唇或紧唇驱动。",
+          "mode": "lip-follow",
+          "bookPages": [
+            139,
+            105,
+            109
+          ],
+          "evidence": "PDF139 列出口轮匝肌，但没有 CONTRACTED/RELAXED 标记或可独立确认的口轮匝肌收缩方向；采用被动随动是可视化推断。",
+          "evidenceLevel": "visualization-inference",
+          "muscleType": "skeletal",
+          "notes": "原图仅列出肌名，未明确标注收缩或完全放松；这里暂按被动随动展示。"
+        }
+      ],
+      "figurePage": 139,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "furious",
+      "nameZh": "暴怒",
+      "nameEn": "Rage",
+      "aus": [
+        9,
+        6,
+        4,
+        25,
+        26
+      ],
+      "bookPages": [
+        148,
+        149
+      ],
+      "printedPages": [
+        146,
+        147
+      ],
+      "description": "皱眉、皱鼻、提颊缩眼并张口；与闭口紧唇的 angry 配方不同。",
+      "activations": {
+        "levator_labii_superioris_alaeque_nasi": 0.9,
+        "corrugator_supercilii": 0.85,
+        "procerus": 0.7,
+        "depressor_supercilii": 0.65,
+        "orbicularis_oculi": 0.65,
+        "depressor_labii_inferioris": 0.75,
+        "lateral_pterygoid": 0.7
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "relaxed": [
+        "temporalis",
+        "masseter",
+        "medial_pterygoid",
+        "orbicularis_oris"
+      ],
+      "parts": {
+        "orbicularis_oculi": "orbital",
+        "lateral_pterygoid": "inferior"
+      },
+      "jawOpen": 0.72,
+      "actions": [
+        {
+          "muscleId": "levator_labii_superioris_alaeque_nasi",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "沿鼻侧上提鼻翼及上唇内侧，牵起眶下软组织并皱鼻。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            149,
+            78,
+            79
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF78,79 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "corrugator_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉部向中线聚拢并向下牵引，形成眉间竖纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            149,
+            56,
+            57
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF56,57 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "procerus",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉间和鼻根皮肤向下牵引，形成鼻根横纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            149,
+            56,
+            57
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF56,57 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉内侧向下牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            149,
+            56,
+            57
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF56,57 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "orbicularis_oculi",
+          "part": "orbital",
+          "kind": "contract",
+          "directionZh": "眶部收缩使下方颊皮肤向上、眶上方皮肤向眼裂方向下移，眼裂变窄；不是整块眼眶统一下移。",
+          "mode": "orbital",
+          "bookPages": [
+            149,
+            60,
+            61,
+            62
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF60,61,62 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "本预设明确使用眶部 AU6；没有据此额外添加睑部 AU7 主动闭眼。"
+        },
+        {
+          "muscleId": "depressor_labii_inferioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "下唇向下、稍向外牵引并外翻，帮助双唇分开；不以此旋转下颌骨。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            149,
+            108,
+            109
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF108,109 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "lateral_pterygoid",
+          "part": "inferior",
+          "kind": "contract",
+          "directionZh": "以下头作用解释髁突向前牵移并协助张口；不是把全肌沿竖直方向往下拉。",
+          "mode": "jaw-opener",
+          "bookPages": [
+            149,
+            126,
+            127
+          ],
+          "evidence": "PDF149 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF126,127 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "表情页只列整块翼外肌；下头/上头分工来自肌肉页及 原始肌电研究。下颌关节运动另记，真实张口还涉及本 app 未独立控制的舌骨上肌等。"
+        },
+        {
+          "muscleId": "temporalis",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            149,
+            118,
+            119,
+            120,
+            121
+          ],
+          "evidence": "PDF149 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "masseter",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            149,
+            118,
+            119,
+            122,
+            123
+          ],
+          "evidence": "PDF149 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "medial_pterygoid",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            149,
+            118,
+            119,
+            124,
+            125
+          ],
+          "evidence": "PDF149 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "orbicularis_oris",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "减少闭唇/聚唇作用，唇随提唇、降唇和张口而分开；不施加主动噘嘴或紧唇。",
+          "mode": "lip-release",
+          "bookPages": [
+            149,
+            88,
+            89,
+            90,
+            91
+          ],
+          "evidence": "PDF149 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": null,
+          "part": "mandible",
+          "kind": "joint",
+          "directionZh": "下颌绕颞下颌关节旋转下降并伴随髁突前移；牙列和下颌骨作为骨性结构随动。",
+          "mode": "jaw-open",
+          "bookPages": [
+            149,
+            118,
+            119,
+            126,
+            127
+          ],
+          "evidence": "表情图的 AU26 和张口形态支持下颌下降；旋转/平移分解及其幅度为教学可视化近似。",
+          "evidenceLevel": "joint-motion-inference",
+          "jointId": "temporomandibular_joint",
+          "notes": "开口量单独控制；当前几何采用固定轴旋转，未模拟髁突前移。放松的闭口肌与软组织可被动改变长度。"
+        }
+      ],
+      "figurePage": 149,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "shock",
+      "nameZh": "惊讶",
+      "nameEn": "Surprise",
+      "aus": [
+        1,
+        2,
+        5,
+        25,
+        26
+      ],
+      "bookPages": [
+        156,
+        157
+      ],
+      "printedPages": [
+        154,
+        155
+      ],
+      "description": "眉毛整体抬高、上睑提升、双唇分开及下颌下降；对应用户 shock 图片。",
+      "activations": {
+        "frontalis": 0.85,
+        "depressor_labii_inferioris": 0.5,
+        "levator_palpebrae_superioris": 0.85,
+        "superior_tarsal": 0.35,
+        "lateral_pterygoid": 0.55
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "relaxed": [
+        "temporalis",
+        "masseter",
+        "medial_pterygoid",
+        "orbicularis_oris"
+      ],
+      "parts": {
+        "frontalis": "medial+lateral",
+        "lateral_pterygoid": "inferior"
+      },
+      "jawOpen": 0.62,
+      "actions": [
+        {
+          "muscleId": "frontalis",
+          "part": "medial+lateral",
+          "kind": "contract",
+          "directionZh": "内侧和外侧眉部一起上提；对应 AU1+AU2。",
+          "mode": "medial+lateral",
+          "bookPages": [
+            157,
+            55
+          ],
+          "evidence": "PDF157 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF55 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "区域依据表情 AU 与箭头及 PDF55；整块额肌网格不代表所有区域同等激活。"
+        },
+        {
+          "muscleId": "depressor_labii_inferioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "下唇向下、稍向外牵引并外翻，帮助双唇分开；不以此旋转下颌骨。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            157,
+            108,
+            109
+          ],
+          "evidence": "PDF157 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF108,109 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "levator_palpebrae_superioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上提上眼睑，增大睑裂；不直接主动下拉下眼睑。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            157,
+            58,
+            59,
+            64,
+            65
+          ],
+          "evidence": "PDF157 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF58,59,64,65 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "superior_tarsal",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上提/维持上睑板，辅助上眼睑提升；属于平滑肌。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            157,
+            58,
+            59
+          ],
+          "evidence": "PDF157 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF58,59 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "smooth",
+          "notes": "书中列出的深层辅助肌；平滑肌类型由 组织形态研究 交叉核对，不能把控件解释为独立随意运动。"
+        },
+        {
+          "muscleId": "lateral_pterygoid",
+          "part": "inferior",
+          "kind": "contract",
+          "directionZh": "以下头作用解释髁突向前牵移并协助张口；不是把全肌沿竖直方向往下拉。",
+          "mode": "jaw-opener",
+          "bookPages": [
+            157,
+            126,
+            127
+          ],
+          "evidence": "PDF157 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF126,127 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "表情页只列整块翼外肌；下头/上头分工来自肌肉页及 原始肌电研究。下颌关节运动另记，真实张口还涉及本 app 未独立控制的舌骨上肌等。"
+        },
+        {
+          "muscleId": "temporalis",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            157,
+            118,
+            119,
+            120,
+            121
+          ],
+          "evidence": "PDF157 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "masseter",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            157,
+            118,
+            119,
+            122,
+            123
+          ],
+          "evidence": "PDF157 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "medial_pterygoid",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            157,
+            118,
+            119,
+            124,
+            125
+          ],
+          "evidence": "PDF157 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "orbicularis_oris",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "减少闭唇/聚唇作用，唇随提唇、降唇和张口而分开；不施加主动噘嘴或紧唇。",
+          "mode": "lip-release",
+          "bookPages": [
+            157,
+            88,
+            89,
+            90,
+            91
+          ],
+          "evidence": "PDF157 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": null,
+          "part": "mandible",
+          "kind": "joint",
+          "directionZh": "下颌绕颞下颌关节旋转下降并伴随髁突前移；牙列和下颌骨作为骨性结构随动。",
+          "mode": "jaw-open",
+          "bookPages": [
+            157,
+            118,
+            119,
+            126,
+            127
+          ],
+          "evidence": "表情图的 AU26 和张口形态支持下颌下降；旋转/平移分解及其幅度为教学可视化近似。",
+          "evidenceLevel": "joint-motion-inference",
+          "jointId": "temporomandibular_joint",
+          "notes": "开口量单独控制；当前几何采用固定轴旋转，未模拟髁突前移。放松的闭口肌与软组织可被动改变长度。"
+        }
+      ],
+      "figurePage": 157,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "fear",
+      "nameZh": "恐惧",
+      "nameEn": "Fear",
+      "aus": [
+        1,
+        5,
+        11,
+        20,
+        25,
+        26
+      ],
+      "bookPages": [
+        164,
+        165
+      ],
+      "printedPages": [
+        162,
+        163
+      ],
+      "description": "内眉上提伴眉间紧张，睁眼、横向拉唇并张口；按书中示例组织。",
+      "activations": {
+        "frontalis": 0.75,
+        "corrugator_supercilii": 0.45,
+        "zygomaticus_minor": 0.4,
+        "depressor_labii_inferioris": 0.5,
+        "risorius": 0.75,
+        "platysma": 0.65,
+        "levator_palpebrae_superioris": 0.85,
+        "superior_tarsal": 0.35,
+        "lateral_pterygoid": 0.45
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "relaxed": [
+        "temporalis",
+        "masseter",
+        "medial_pterygoid",
+        "orbicularis_oris"
+      ],
+      "parts": {
+        "frontalis": "medial",
+        "lateral_pterygoid": "inferior"
+      },
+      "jawOpen": 0.5,
+      "note": "书中肌肉列表含皱眉肌但 AU 标题未列 AU4，保留并标明其不一致。",
+      "actions": [
+        {
+          "muscleId": "frontalis",
+          "part": "medial",
+          "kind": "contract",
+          "directionZh": "眉内侧上提，与皱眉肌的向内牵引共同形成内眉抬高；不统一上提眉尾。",
+          "mode": "medial",
+          "bookPages": [
+            165,
+            55
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF55 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "区域依据表情 AU 与箭头及 PDF55；整块额肌网格不代表所有区域同等激活。"
+        },
+        {
+          "muscleId": "corrugator_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉部主要向中线聚拢，与内侧额肌上提并存；图中不能把整条眉毛统一下压。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            56,
+            57
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF56,57 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "PDF165 的箭头偏向水平内聚；该页肌肉列表含皱眉肌但 AU 标题漏列 AU4。"
+        },
+        {
+          "muscleId": "zygomaticus_minor",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上唇中外侧与鼻唇沟皮肤向上并稍向外牵引；主要作用点不是口角。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            106,
+            107
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF106,107 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_labii_inferioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "下唇向下、稍向外牵引并外翻，帮助双唇分开；不以此旋转下颌骨。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            108,
+            109
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF108,109 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "risorius",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "口角近水平向外、向后牵引，横向拉开唇部；不当作口角上提。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            114,
+            115
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF114,115 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "platysma",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "颈部浅层绷紧，口角/下唇组织向下、向外后方牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            116,
+            117
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF116,117 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "levator_palpebrae_superioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上提上眼睑，增大睑裂；不直接主动下拉下眼睑。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            58,
+            59,
+            64,
+            65
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF58,59,64,65 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "superior_tarsal",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上提/维持上睑板，辅助上眼睑提升；属于平滑肌。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            165,
+            58,
+            59
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF58,59 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "smooth",
+          "notes": "书中列出的深层辅助肌；平滑肌类型由 组织形态研究 交叉核对，不能把控件解释为独立随意运动。"
+        },
+        {
+          "muscleId": "lateral_pterygoid",
+          "part": "inferior",
+          "kind": "contract",
+          "directionZh": "以下头作用解释髁突向前牵移并协助张口；不是把全肌沿竖直方向往下拉。",
+          "mode": "jaw-opener",
+          "bookPages": [
+            165,
+            126,
+            127
+          ],
+          "evidence": "PDF165 的 CONTRACTED/DEEP MUSCLES 列表明确列出；方向由该图箭头及 PDF126,127 的肌肉动作说明核对。",
+          "evidenceLevel": "explicit-contract-label",
+          "muscleType": "skeletal",
+          "notes": "表情页只列整块翼外肌；下头/上头分工来自肌肉页及 原始肌电研究。下颌关节运动另记，真实张口还涉及本 app 未独立控制的舌骨上肌等。"
+        },
+        {
+          "muscleId": "temporalis",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            165,
+            118,
+            119,
+            120,
+            121
+          ],
+          "evidence": "PDF165 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "masseter",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            165,
+            118,
+            119,
+            122,
+            123
+          ],
+          "evidence": "PDF165 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "medial_pterygoid",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "闭口肌放松，随下颌下降发生被动位移和长度变化；不以主动收缩来解释图中的向下箭头。",
+          "mode": "relaxed-jaw-closer",
+          "bookPages": [
+            165,
+            118,
+            119,
+            124,
+            125
+          ],
+          "evidence": "PDF165 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": "orbicularis_oris",
+          "part": "unspecified",
+          "kind": "relax",
+          "directionZh": "减少闭唇/聚唇作用，唇随提唇、降唇和张口而分开；不施加主动噘嘴或紧唇。",
+          "mode": "lip-release",
+          "bookPages": [
+            165,
+            88,
+            89,
+            90,
+            91
+          ],
+          "evidence": "PDF165 明确列于 RELAXED MUSCLES。",
+          "evidenceLevel": "explicit-relaxed-label",
+          "muscleType": "skeletal",
+          "notes": "放松不是主动向反方向拉；图示位置变化不等于肌纤维主动伸长。"
+        },
+        {
+          "muscleId": null,
+          "part": "mandible",
+          "kind": "joint",
+          "directionZh": "下颌绕颞下颌关节旋转下降并伴随髁突前移；牙列和下颌骨作为骨性结构随动。",
+          "mode": "jaw-open",
+          "bookPages": [
+            165,
+            118,
+            119,
+            126,
+            127
+          ],
+          "evidence": "表情图的 AU26 和张口形态支持下颌下降；旋转/平移分解及其幅度为教学可视化近似。",
+          "evidenceLevel": "joint-motion-inference",
+          "jointId": "temporomandibular_joint",
+          "notes": "开口量单独控制；当前几何采用固定轴旋转，未模拟髁突前移。放松的闭口肌与软组织可被动改变长度。"
+        }
+      ],
+      "figurePage": 165,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "disgusting",
+      "nameZh": "厌恶",
+      "nameEn": "Disgust",
+      "aus": [
+        4,
+        6,
+        9,
+        11,
+        15,
+        17
+      ],
+      "bookPages": [
+        172,
+        173
+      ],
+      "printedPages": [
+        170,
+        171
+      ],
+      "description": "眉间下压、皱鼻抬上唇，口角下压并抬颏；不是单一肌肉动作。",
+      "activations": {
+        "corrugator_supercilii": 0.65,
+        "procerus": 0.6,
+        "depressor_supercilii": 0.5,
+        "zygomaticus_minor": 0.6,
+        "levator_labii_superioris_alaeque_nasi": 0.85,
+        "orbicularis_oculi": 0.4,
+        "depressor_anguli_oris": 0.45,
+        "mentalis": 0.6
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "parts": {
+        "orbicularis_oculi": "orbital"
+      },
+      "actions": [
+        {
+          "muscleId": "corrugator_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉部向中线聚拢并向下牵引，形成眉间竖纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            56,
+            57
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "procerus",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉间和鼻根皮肤向下牵引，形成鼻根横纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            56,
+            57
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉内侧向下牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            56,
+            57
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "zygomaticus_minor",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上唇中外侧与鼻唇沟皮肤向上并稍向外牵引；主要作用点不是口角。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            106,
+            107
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF106,107 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "levator_labii_superioris_alaeque_nasi",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "沿鼻侧上提鼻翼及上唇内侧，牵起眶下软组织并皱鼻。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            78,
+            79
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF78,79 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "orbicularis_oculi",
+          "part": "orbital",
+          "kind": "contract",
+          "directionZh": "眶部收缩使下方颊皮肤向上、眶上方皮肤向眼裂方向下移，眼裂变窄；不是整块眼眶统一下移。",
+          "mode": "orbital",
+          "bookPages": [
+            173,
+            60,
+            61,
+            62
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF60,61,62 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "本预设明确使用眶部 AU6；没有据此额外添加睑部 AU7 主动闭眼。"
+        },
+        {
+          "muscleId": "depressor_anguli_oris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "口角向下并稍向外牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            102,
+            103
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF102,103 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "mentalis",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "颏部皮肤向内上方聚拢，推动下唇中央上提，较强时可向前突出。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            173,
+            100,
+            101
+          ],
+          "evidence": "PDF173 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF100,101 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        }
+      ],
+      "figurePage": 173,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "sad",
+      "nameZh": "悲伤",
+      "nameEn": "Sadness",
+      "aus": [
+        1,
+        4,
+        15
+      ],
+      "bookPages": [
+        180,
+        181
+      ],
+      "printedPages": [
+        178,
+        179
+      ],
+      "description": "内眉抬高并向中线聚拢，口角下降；额肌只采用内侧纤维的意图。",
+      "activations": {
+        "frontalis": 0.55,
+        "corrugator_supercilii": 0.65,
+        "depressor_supercilii": 0.45,
+        "depressor_anguli_oris": 0.75
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "parts": {
+        "frontalis": "medial"
+      },
+      "note": "并未给全部额肌统一上提眉尾；AU1 与 AU4 协同决定眉形。",
+      "actions": [
+        {
+          "muscleId": "frontalis",
+          "part": "medial",
+          "kind": "contract",
+          "directionZh": "眉内侧上提，与皱眉肌的向内牵引共同形成内眉抬高；不统一上提眉尾。",
+          "mode": "medial",
+          "bookPages": [
+            181,
+            55
+          ],
+          "evidence": "PDF181 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF55 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "区域依据表情 AU 与箭头及 PDF55；整块额肌网格不代表所有区域同等激活。"
+        },
+        {
+          "muscleId": "corrugator_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉部向中线聚拢并向下牵引，形成眉间竖纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            181,
+            56,
+            57
+          ],
+          "evidence": "PDF181 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉内侧向下牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            181,
+            56,
+            57
+          ],
+          "evidence": "PDF181 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_anguli_oris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "口角向下并稍向外牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            181,
+            102,
+            103
+          ],
+          "evidence": "PDF181 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF102,103 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        }
+      ],
+      "figurePage": 181,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "contempt",
+      "nameZh": "轻蔑",
+      "nameEn": "Contempt",
+      "aus": [
+        6,
+        12,
+        14
+      ],
+      "bookPages": [
+        188,
+        189
+      ],
+      "printedPages": [
+        186,
+        187
+      ],
+      "description": "以单侧口角提拉和收紧演示书中的不对称示例。",
+      "activations": {
+        "buccinator": 0.7,
+        "zygomaticus_major": 0.55,
+        "orbicularis_oculi": 0.3
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "side": "left",
+      "parts": {
+        "orbicularis_oculi": "orbital"
+      },
+      "note": "PDF189 明确标 AU L6；口部 AU12/AU14 未分别标侧。左侧眼轮匝肌眶部有直接侧别证据，口部左侧优势按图示采用，属于演示推断；不表示轻蔑必须发生在左侧。",
+      "actions": [
+        {
+          "muscleId": "buccinator",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "颊部向牙列压紧，口角向颊后方收紧并形成局部凹陷；不等同颧大肌上提或噘嘴内聚。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            189,
+            96,
+            97
+          ],
+          "evidence": "PDF189 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF96,97 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "side": "left",
+          "sideEvidence": "figure-based-demonstration-inference",
+          "notes": "口部 AU12/AU14 未分别标侧；按图形采用左侧优势是演示推断。"
+        },
+        {
+          "muscleId": "zygomaticus_major",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "口角沿颧骨方向向上、向外及向后牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            189,
+            104,
+            105
+          ],
+          "evidence": "PDF189 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF104,105 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "side": "left",
+          "sideEvidence": "figure-based-demonstration-inference",
+          "notes": "口部 AU12/AU14 未分别标侧；按图形采用左侧优势是演示推断。"
+        },
+        {
+          "muscleId": "orbicularis_oculi",
+          "part": "orbital",
+          "kind": "contract",
+          "directionZh": "眶部收缩使下方颊皮肤向上、眶上方皮肤向眼裂方向下移，眼裂变窄；不是整块眼眶统一下移。",
+          "mode": "orbital",
+          "bookPages": [
+            189,
+            60,
+            61,
+            62
+          ],
+          "evidence": "PDF189 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF60,61,62 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "side": "left",
+          "sideEvidence": "explicit-AU-L6",
+          "notes": "本预设明确使用眶部 AU6；没有据此额外添加睑部 AU7 主动闭眼。 眼轮匝肌左侧由 AU L6 明确给出。"
+        }
+      ],
+      "figurePage": 189,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "angry",
+      "nameZh": "生气",
+      "nameEn": "Anger",
+      "aus": [
+        4,
+        5,
+        23,
+        38
+      ],
+      "bookPages": [
+        196,
+        197
+      ],
+      "printedPages": [
+        194,
+        195
+      ],
+      "description": "眉间下压、上睑提升、双唇收紧及鼻翼扩张；嘴保持闭合。",
+      "activations": {
+        "corrugator_supercilii": 0.85,
+        "procerus": 0.7,
+        "depressor_supercilii": 0.65,
+        "levator_palpebrae_superioris": 0.55,
+        "superior_tarsal": 0.25,
+        "nasalis": 0.6,
+        "orbicularis_oris": 0.8,
+        "mentalis": 0.35,
+        "dilator_naris": 0.5,
+        "depressor_septi_nasi": 0.2
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "parts": {
+        "nasalis": "alar",
+        "orbicularis_oris": "lip-tightener"
+      },
+      "note": "鼻肌采用翼部扩张模式，非横部压鼻孔；口轮匝肌为 AU23 紧唇，保留口宽而使唇红变窄，非 AU18 前突。降鼻中隔肌的下拉鼻基底有图证，但鼻孔净变化存在书内叙述不一致。颏肌明确列于 PDF197，并见 PDF90/91 的 AU23 联合作用。",
+      "actions": [
+        {
+          "muscleId": "corrugator_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉部向中线聚拢并向下牵引，形成眉间竖纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            56,
+            57
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "procerus",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉间和鼻根皮肤向下牵引，形成鼻根横纹。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            56,
+            57
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_supercilii",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "眉内侧向下牵引。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            56,
+            57
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF56,57 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "levator_palpebrae_superioris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上提上眼睑，增大睑裂；不直接主动下拉下眼睑。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            58,
+            59,
+            64,
+            65
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF58,59,64,65 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "superior_tarsal",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上提/维持上睑板，辅助上眼睑提升；属于平滑肌。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            58,
+            59
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF58,59 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "smooth",
+          "notes": "书中列出的深层辅助肌；平滑肌类型由 组织形态研究 交叉核对，不能把控件解释为独立随意运动。"
+        },
+        {
+          "muscleId": "nasalis",
+          "part": "alar",
+          "kind": "contract",
+          "directionZh": "鼻肌翼部使鼻翼向外展开，扩大鼻孔；不采用横部向内压缩。",
+          "mode": "alar",
+          "bookPages": [
+            197,
+            80,
+            81
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF80,81 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "orbicularis_oris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "上下唇向接触线收紧，唇红变窄；口宽不明显缩短，不产生 AU18 的噘嘴前突。",
+          "mode": "lip-tightener",
+          "bookPages": [
+            197,
+            90,
+            91
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF88,89,90,91 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "AU23 动作模式有书证，但该图未将多层口轮匝肌精确分配到独立肌束。"
+        },
+        {
+          "muscleId": "mentalis",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "颏部皮肤向内上方聚拢，推动下唇中央上提，较强时可向前突出。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            90,
+            91,
+            100,
+            101
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF100,101 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "PDF197 明确列颏肌，PDF90/91 的 AU23 也列颏肌；未另外声称整个表情有 AU17。"
+        },
+        {
+          "muscleId": "dilator_naris",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "向外牵动鼻孔缘，展开鼻翼并增大鼻孔开口。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            80,
+            81
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF80,81 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        },
+        {
+          "muscleId": "depressor_septi_nasi",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "向下牵引鼻小柱/鼻中隔基底并改变鼻孔形状；不把它当作纯横向扩张器。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            197,
+            80,
+            81
+          ],
+          "evidence": "PDF197 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF80,81 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "PDF80 正文对鼻孔收缩与 PDF81/197 的 AU38 组合有不一致；保留下拉鼻基底，不强设其单独导致扩孔。"
+        }
+      ],
+      "figurePage": 197,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    },
+    {
+      "id": "pout",
+      "nameZh": "噘嘴",
+      "nameEn": "Lip pucker",
+      "aus": [
+        18
+      ],
+      "bookPages": [
+        89
+      ],
+      "printedPages": [
+        87
+      ],
+      "description": "口轮匝肌相关切牙肌纤维使口角靠近、唇部前突；颏肌协助下唇上提。",
+      "activations": {
+        "orbicularis_oris": 0.9,
+        "mentalis": 0.55
+      },
+      "weightEvidence": "heuristic-for-animation-not-measured",
+      "parts": {
+        "orbicularis_oris": "lip-pucker"
+      },
+      "note": "书中标题和动作内容对应 AU18；PDF 第 89 页照片小标签写作 AU5，此处依据标题和动作内容记录。",
+      "actions": [
+        {
+          "muscleId": "orbicularis_oris",
+          "part": "incisivus_superior+incisivus_inferior",
+          "kind": "contract",
+          "directionZh": "上切牙肌束将口角向内上牵引，下切牙肌束将口角向内下牵引；合力使两口角靠拢、口形变圆并向前噘出。",
+          "mode": "lip-pucker",
+          "bookPages": [
+            89,
+            88
+          ],
+          "evidence": "PDF89 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF88,89,90,91 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal",
+          "notes": "两切牙束方向不同，不能统一向上或将整个环做等比缩放；该页小 AU5 标签按正文 AU18 纠正。"
+        },
+        {
+          "muscleId": "mentalis",
+          "part": "unspecified",
+          "kind": "contract",
+          "directionZh": "颏部皮肤向内上方聚拢，推动下唇中央上提，较强时可向前突出。",
+          "mode": "fiber-shortening",
+          "bookPages": [
+            89,
+            100,
+            101
+          ],
+          "evidence": "PDF89 的表情肌肉列表列出；收缩动作与方向由该图箭头和 PDF100,101 的肌肉动作页共同支持。",
+          "evidenceLevel": "listed-with-action-evidence",
+          "muscleType": "skeletal"
+        }
+      ],
+      "figurePage": 89,
+      "figureReview": "原 PDF 全页图、正/侧视箭头、肌肉列表及相关肌肉动作页已于 2026-10-17 对照。"
+    }
+  ],
+  "sources": [
+    {
+      "id": "book",
+      "type": "book",
+      "title": "Uldis Zarins, Anatomy of Facial Expression, First Edition (2017); Chinese V1.1 page numbering",
+      "pageCount": 222,
+      "pageRule": "printed = PDF page - 2 on cited anatomy/expression pages",
+      "url": "methods.html#book"
+    },
+    {
+      "id": "facs-official",
+      "type": "official",
+      "title": "Paul Ekman Group - Facial Action Coding System",
+      "url": "https://www.paulekman.com/facial-action-coding-system/"
+    },
+    {
+      "id": "tarsal-study",
+      "type": "primary-research",
+      "title": "The human superior tarsal muscle (Müller’s muscle): a morphological classification with surgical correlations",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19373523/"
+    },
+    {
+      "id": "depressor-supercilii-study",
+      "type": "primary-research",
+      "title": "Depressor supercilii muscle: anatomy, histology, and cosmetic implications",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11766019/"
+    },
+    {
+      "id": "corrugator-study",
+      "type": "primary-research",
+      "title": "The corrugator supercilii muscle revisited",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19331895/"
+    },
+    {
+      "id": "upper-face-study",
+      "type": "primary-research",
+      "title": "Anatomy of Forehead, Glabellar, Nasal and Orbital Muscles, and Their Correlation with Distinctive Patterns of Skin Lines on the Upper Third of the Face",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27743084/"
+    },
+    {
+      "id": "pterygoid-emg-study",
+      "type": "primary-research",
+      "title": "Is the superior belly of the lateral pterygoid primarily a stabilizer? An EMG study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11422675/"
+    },
+    {
+      "id": "jaw-opening-emg-study",
+      "type": "primary-research",
+      "title": "An electromyographic study of the inferior head of the lateral pterygoid muscle and anterior belly of digastric during jaw-opening",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2135316/"
+    },
+    {
+      "id": "nasal-airflow-study",
+      "type": "primary-research",
+      "title": "The Role of the Depressor Nasi Septi Muscle in Nasal Air Flow",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7508750/"
+    },
+    {
+      "id": "nasal-variation-study",
+      "type": "primary-research",
+      "title": "Anatomic variations found on dissection of depressor septi nasi muscles in cadavers",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22250266/"
+    },
+    {
+      "id": "openstax-head-neck",
+      "type": "official-textbook",
+      "title": "OpenStax Anatomy and Physiology 2e, 11.3 Axial Muscles of the Head, Neck, and Back",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-3-axial-muscles-of-the-head-neck-and-back"
+    }
+  ],
+  "actionNotice": "actions 区分主动收缩、明确放松、被动随动和关节运动。directionZh 描述图示软组织/骨性运动方向，不是测得的纤维应变向量；动作权重仍为动画启发式。缺少记录不等于生理上完全静止。",
+  "actionSchema": {
+    "version": 1,
+    "kinds": {
+      "contract": "书图及肌肉动作页支持的收缩动作",
+      "relax": "书中明确标为 RELAXED；不视为产生相反牵引的主动动作",
+      "passive": "随其他肌肉/关节运动的可视化处理，须看证据说明",
+      "joint": "关节运动；muscleId 为 null，不能作为肌肉激活"
+    },
+    "partsNotice": "actions.part 为解剖分部；unspecified 表示书图未分清纤维。表达式原 parts 字段保留兼容，其中 lip-tightener/lip-pucker 是动作模式而非独立解剖肌。",
+    "directions": "上下、内外、前后均为模型自身解剖方向；left 为模型左侧。",
+    "weightNotice": "actions 不引入实测强度；activations/jawOpen 全部是示意权重。",
+    "evidenceLevels": [
+      "explicit-contract-label",
+      "listed-with-action-evidence",
+      "explicit-relaxed-label",
+      "visualization-inference",
+      "joint-motion-inference"
+    ]
+  }
+}
